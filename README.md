@@ -12,3 +12,11 @@ Edad: 32 años
 Profesion: Nutricionista, Futura Programadora.
 Correo: lore6489@gmail.com
 Rol: Analista
+
+Nombre: Martha Liliana Dominguez
+Lugar: Ginebra, Valle
+Edad: 25 años
+Profesion: Administradora de Empresas. 
+Correo: marthadominguezg@gmail.com
+Rol: Desarrolladora
+
