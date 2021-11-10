@@ -20,3 +20,8 @@ Profesion: Administradora de Empresas.
 Correo: marthadominguezg@gmail.com
 Rol: Desarrolladora
 
+Nombre: Mauricio Gongora Angulo <br>
+Lugar: Cali, Valle <br>
+Profesión: Ingeniero Electrónico. <br> 
+Correo: mago0025@gmail.com <br>
+Rol: Product Owner <br>
