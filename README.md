@@ -25,3 +25,10 @@ Lugar: Cali, Valle <br>
 Profesión: Ingeniero Electrónico. <br> 
 Correo: mago0025@gmail.com <br>
 Rol: Product Owner <br>
+
+Nombre: Fernando Andrés Villaquirán Hurtado
+Lugar: Santander de Quilichao, Cauca
+Edad: 45 años
+Profesion: Ingeniero de Sistemas. 
+Correo: fernandovillaquiran@outlook.com
+Rol: Scrum Master
