@@ -13,7 +13,7 @@ function mainServer() {
   const app = express();
 
   //Conexion base de datos
-  //dbConnection();
+  dbConnection();
 
   //Configuración
   app.set('port', process.env.PORT);

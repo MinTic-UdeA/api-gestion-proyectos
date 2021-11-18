@@ -22,7 +22,7 @@ user.get('/usuarios', async (req, res, next) => {
 user.get('/usuario/:id', (req, res, next) => {
     const id = Number(req.params.id);
 
-    userModel.findById(id, function (err, user) {
+    userModel.findById(id, (err, user) => {
         //console.log("usuario", user);
         //console.log("error: ", err);
         if (user !== null) {
