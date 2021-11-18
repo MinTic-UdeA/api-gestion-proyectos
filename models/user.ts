@@ -15,7 +15,22 @@ interface User {
 const userSchema = new Schema<User>({
     correo: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        validate: {
+            validator: (email) => {
+              return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+            },
+            // (email) => {
+            //   if (email.includes('@') && email.includes('.')) {
+            //     return true;
+            //   } else {
+            //     return false;
+            //   }
+            // },
+            message: 'El formato del correo electrónico está malo.',
+          },
+       
     },
     identificacion: {
         type: String,
@@ -32,7 +47,7 @@ const userSchema = new Schema<User>({
     },
     rol: {
         type: String,
-        required: true,
+        //required: true,
         enum: Enum_Rol,
     },
     estado: {
