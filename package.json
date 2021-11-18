@@ -2,26 +2,37 @@
   "name": "gestion-proyectos",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MinTic-UdeA/gestion-proyectos.git"
   },
   "keywords": [],
-  "author": "Fernando Villaquirán <fernandovillaquiran@outlook.com>",
+  "author": "C4-DevOps",
   "type": "module",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MinTic-UdeA/gestion-proyectos/issues"
   },
   "homepage": "https://github.com/MinTic-UdeA/gestion-proyectos#readme",
+
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.0.12"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/express-handlebars": "^5.3.1",
+    "@types/express-session": "^1.17.4",
+    "@types/method-override": "^0.0.32",
     "nodemon": "^2.0.14"
   }
 }
