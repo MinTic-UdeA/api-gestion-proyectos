@@ -11,7 +11,6 @@ function mainServer() {
   //Varibles
   dotEnv.config();
   const app = express();
-  const __dirname = path.resolve();
 
   //Conexion base de datos
   //dbConnection();

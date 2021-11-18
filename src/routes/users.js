@@ -61,4 +61,3 @@ user.post('/usuarios', (req, res, next) => {
    }
    
 });
-
