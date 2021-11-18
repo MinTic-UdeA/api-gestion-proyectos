@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "module": "CommonJs",
+      "esModuleInterop": true
+    }
+  }
+
+// Nos permite hacer imports a la vez que se usa Typescript
