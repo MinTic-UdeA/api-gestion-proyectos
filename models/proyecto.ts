@@ -36,7 +36,7 @@ const proyectoSchema = new Schema<Proyecto>({
     fase: {
         type: String,
         enum: Enum_FaseProyecto,
-        default: Enum_EstadoProyecto.nulo
+        default: Enum_FaseProyecto.nulo
     }
 });
 
