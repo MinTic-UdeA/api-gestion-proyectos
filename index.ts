@@ -1,5 +1,7 @@
 import conectarBD from "./db/db";
+import { Enum_Rol } from "./models/enums/enums";
 import { UserModel } from "./models/user";
+import { ProyectoModel } from "./models/proyecto";
 
 const main = async () => {
     await conectarBD();
@@ -7,10 +9,11 @@ const main = async () => {
 // CREAR un Usuario
 
   await UserModel.create({
-    correo: "juana@hotmail.com",
-    identificacion: "11111111",
-    nombre: "juana",
-    apellido: "perez"
+    correo: "juanapp@hotmail.com",
+    identificacion: "222",
+    nombre: "juana ",
+    apellido: "perez",
+    rol: Enum_Rol.administrador
 })
 .then((u)=> console.log("Usuario creado", u))
 .catch((e)=> console.error("error creando el usuario", e));

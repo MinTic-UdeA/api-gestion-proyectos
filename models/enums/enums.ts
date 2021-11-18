@@ -10,4 +10,22 @@ enum Enum_Rol {
     no_autorizado = "No Autorizado"
   }
 
-  export { Enum_Rol, Enum_EstadoUsuario }
+  enum Enum_EstadoProyecto {
+    activo = "activo",
+    inactivo = "inactivo"
+    
+  }
+
+  enum Enum_FaseProyecto { 
+    iniciado = "iniciado",
+    desarrollo = "desarrollo",
+    terminado = "terminado",
+    nulo = " "
+    
+  }
+
+  enum Enum_TipoObjetivo {
+  
+  }
+
+  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo }

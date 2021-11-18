@@ -21,14 +21,7 @@ const userSchema = new Schema<User>({
             validator: (email) => {
               return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
             },
-            // (email) => {
-            //   if (email.includes('@') && email.includes('.')) {
-            //     return true;
-            //   } else {
-            //     return false;
-            //   }
-            // },
-            message: 'El formato del correo electrónico está malo.',
+            message: 'El formato del correo electrónico es incorrecto.',
           },
        
     },
