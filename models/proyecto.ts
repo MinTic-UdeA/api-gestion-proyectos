@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from './enums/enums';
+import { UserModel } from "./user";
 
 interface Proyecto {
     nombre: string,
@@ -7,7 +8,9 @@ interface Proyecto {
     fechaInicio: Date,
     fechaFin: Date,
     estado: Enum_EstadoProyecto,
-    fase: Enum_FaseProyecto
+    fase: Enum_FaseProyecto,
+    lider: Schema.Types.ObjectId,
+    objetivos: Schema.Types.ObjectId
 }
 
 
@@ -26,7 +29,7 @@ const proyectoSchema = new Schema<Proyecto>({
     },
     fechaFin: {
         type: Date,
-        required: true
+        required: true 
     },
     estado: {
         type: String,
@@ -37,7 +40,24 @@ const proyectoSchema = new Schema<Proyecto>({
         type: String,
         enum: Enum_FaseProyecto,
         default: Enum_FaseProyecto.nulo
-    }
+    }, 
+    lider: {
+        type: Schema.Types.ObjectId,
+        ref: UserModel
+    },
+    objetivos: [
+        {
+          descripcion: {
+            type: String,
+            required: true,
+          },
+          tipo: {
+            type: String,
+            enum: Enum_TipoObjetivo,
+            required: true,
+          },
+        },
+      ],
 });
 
 const ProyectoModel = model("Proyecto", proyectoSchema);

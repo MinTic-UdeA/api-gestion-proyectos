@@ -5,7 +5,7 @@ interface User {
     correo: string,
     identificacion: string,
     nombre: string,
-    apellido: string,
+    apellido: string, 
     rol: Enum_Rol;
     estado: Enum_EstadoUsuario;
 }
@@ -23,7 +23,6 @@ const userSchema = new Schema<User>({
             },
             message: 'El formato del correo electrónico es incorrecto.',
           },
-       
     },
     identificacion: {
         type: String,
@@ -40,7 +39,6 @@ const userSchema = new Schema<User>({
     },
     rol: {
         type: String,
-        //required: true,
         enum: Enum_Rol,
     },
     estado: {

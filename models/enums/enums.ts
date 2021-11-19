@@ -1,13 +1,14 @@
+import { Enum_EstadoInscripcion } from '.';
 enum Enum_Rol {
-    estudiante = "Estudiante",
-    lider = "Lider",
-    administrador = "Administrador"
+    estudiante = "estudiante",
+    lider = "eider",
+    administrador = "administrador"
   }
   
   enum Enum_EstadoUsuario {
-    pendiente = "Pendiente",
-    autorizado = "Autorizado",
-    no_autorizado = "No Autorizado"
+    pendiente = "pendiente",
+    autorizado = "autorizado",
+    no_autorizado = "no autorizado"
   }
 
   enum Enum_EstadoProyecto {
@@ -25,7 +26,14 @@ enum Enum_Rol {
   }
 
   enum Enum_TipoObjetivo {
-  
+    general = "general",
+    especifico = "especifico"
   }
 
-  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo }
+  enum Enum_EstadoInscripcion {
+    aceptada = "aceptada",
+    rechazado = "rechazada",
+    pendiente = "pendiente"
+  }
+
+  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo, Enum_EstadoInscripcion }
