@@ -4,8 +4,8 @@ import dotEnv from "dotenv";
 import path from "path";
 import { fileURLToPath } from 'url'
 import { dbConnection } from "./database.js";
-import { project } from "./routes/projects.js";
-import { user } from "./routes/users.js";
+import { project } from "./routes/projectRoutes.js";
+import { user } from "./routes/userRoutes.js";
 
 function mainServer() {
   //Varibles
