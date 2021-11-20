@@ -1,18 +1,20 @@
-import { Schema, model } from "mongoose";
-import { Enum_Rol, Enum_EstadoUsuario } from './enums/enums';
+import mongoose from 'mongoose';
+// import { Schema, model } from "mongoose";
+// import { Enum_Rol, Enum_EstadoUsuario } from './enums/enums';
+const { Schema, model } = mongoose
 
-interface User {
-    correo: string,
-    identificacion: string,
-    nombre: string,
-    apellido: string, 
-    rol: Enum_Rol,
-    estado: Enum_EstadoUsuario,
-}
+// interface User {
+//   correo: string;
+//   identificacion: string;
+//   nombre: string;
+//   apellido: string;
+//   rol: Enum_Rol;
+//   estado: Enum_EstadoUsuario;
+// }
 
 // Construir el esquema y definir el modelo para poder conectarme con la coleccion de Usuario
 
-const userSchema = new Schema<User>({
+const userSchema = new Schema({
     correo: {
         type: String,
         required: true,
@@ -39,12 +41,12 @@ const userSchema = new Schema<User>({
     },
     rol: {
         type: String,
-        enum: Enum_Rol,
+        enum: ['ESTUDIANTE', 'LIDER', 'ADMINISTRADOR'],
     },
     estado: {
         type: String,
-        enum: Enum_EstadoUsuario,
-        default: Enum_EstadoUsuario.pendiente,
+        enum: ['AUTORIZADO', 'NO_AUTORIZADO', 'PENDIENTE'],
+        default: 'PENDIENTE',
     },
 })
 

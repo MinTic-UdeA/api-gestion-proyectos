@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "ts-node index.ts"
+  "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
     "url": "https://github.com/MinTic-UdeA/api-gestion-proyectos/issues"
   },
   "homepage": "https://github.com/MinTic-UdeA/api-gestion-proyectos#readme",
+  "type": "module",
   "dependencies": {
     "mongoose": "^6.0.13",
     "typescript": "^4.4.4",
