@@ -21,6 +21,14 @@ const proyectoSchema = new Schema({
         type: String,
         required: true,
     },
+    objGeneral: {
+        type: String,
+        required: true,
+    },
+    objEspecificos: {
+        type: String,
+        required: true,
+    },
     presupuesto: {
         type: Number,
         required: true,
@@ -46,20 +54,7 @@ const proyectoSchema = new Schema({
     lider: {
         type: Schema.Types.ObjectId,
         ref: UserModel
-    },
-    objetivos: [
-        {
-          descripcion: {
-            type: String,
-            required: true,
-          },
-          tipo: {
-            type: String,
-            enum: ['GENERAL', 'ESPECIFICO'],
-            required: true,
-          },
-        },
-      ],
+    },        
 });
 
 const ProyectoModel = model("Proyecto", proyectoSchema);
