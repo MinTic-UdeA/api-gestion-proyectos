@@ -1,10 +1,8 @@
 import mongoose from 'mongoose';
 // import { connect } from 'mongoose';
 
-const atlasUrl = "mongodb+srv://admin:dI5WbK9p3JhhE7Fv@gestiondeproyectos.tm0ib.mongodb.net/GestionDeProyectos?retryWrites=true&w=majority"
-
 const conectarBD = async () => {
-    return await mongoose.connect(atlasUrl)
+    return await mongoose.connect(process.env.DATABASE_URL)
       .then(() => {
         console.log('Conexion exitosa');
       })
@@ -14,7 +12,3 @@ const conectarBD = async () => {
   };
   
   export default conectarBD;
-
-
-
-  

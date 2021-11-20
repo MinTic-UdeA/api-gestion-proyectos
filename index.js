@@ -1,8 +1,9 @@
 import conectarBD from "./src/db/db.js";
-
 // import { Enum_Rol } from "./src/db/models/enums/enums";
 import { UserModel } from "./src/models/user.js";
 // import { ProyectoModel } from "./src/models/proyecto.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const main = async () => {
     await conectarBD();
