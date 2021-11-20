@@ -9,11 +9,12 @@ const main = async () => {
 // CREAR un Usuario
 
   await UserModel.create({
-    correo: "juanapp@hotmail.com",
-    identificacion: "222",
+    correo: "juanaj@gmail.com",
+    identificacion: "4444",
     nombre: "juana ",
     apellido: "perez",
-    rol: Enum_Rol.administrador
+    rol: Enum_Rol.lider
+    
 })
 .then((u)=> console.log("Usuario creado", u))
 .catch((e)=> console.error("error creando el usuario", e));
@@ -21,9 +22,9 @@ const main = async () => {
 
 // OBTENER un Usuario
 
-/* await UserModel.find()
-.then((u)=> console.log("usuario", u))
-.catch((e)=> console.log("error obteniendo el usuario", e)) */
+// await UserModel.find()
+// .then((u)=> console.log("usuario", u))
+// .catch((e)=> console.log("error obteniendo el usuario", e))
 
 
 // EDITAR un Usuario

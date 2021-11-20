@@ -6,8 +6,8 @@ interface User {
     identificacion: string,
     nombre: string,
     apellido: string, 
-    rol: Enum_Rol;
-    estado: Enum_EstadoUsuario;
+    rol: Enum_Rol,
+    estado: Enum_EstadoUsuario,
 }
 
 // Construir el esquema y definir el modelo para poder conectarme con la coleccion de Usuario
