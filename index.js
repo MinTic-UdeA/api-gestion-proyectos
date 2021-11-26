@@ -1,48 +1,43 @@
+/* Código para prender nuestro servidor de graphql.
+Importar express,
+CORS(librería para que a graphql le puedan entrar request desde varios dominios),
+importar apollo server,
+importar conexión a la base de datos,
+importar dotenv. 
+
+*/
 import conectarBD from "./src/db/db.js";
-// import { Enum_Rol } from "./src/db/models/enums/enums";
-import { UserModel } from "./src/models/user.js";
-// import { ProyectoModel } from "./src/models/proyecto.js";
+import express from 'express';
+import cors from 'cors';
+import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
+import { typeDefs } from './src/graphql/types.js';
+import { resolvers } from './src/graphql/resolvers.js';
+
 dotenv.config();
 
-const main = async () => {
-    await conectarBD();
+// 1. Definir un servidor de GraphQL. Pasamos 2 propiedades: los resolvers y los tipos (cada una de las definiciones que tienen los modelos)
 
-// CREAR un Usuario
-
-  await UserModel.create({
-    correo: "patricia@hotmail.com",
-    identificacion: "444",
-    nombre: "patricia",
-    apellido: "serrano",
-    rol: "ESTUDIANTE"
-    
+const server = new ApolloServer({
+    typeDefs: typeDefs,
+    resolvers: resolvers
 })
-.then((u)=> console.log("Usuario creado", u))
-.catch((e)=> console.error("error creando el usuario", e));
 
-// OBTENER un Usuario
+// 2. Definimos nuestra aplicacion de Express.
+// Usamos un middleware que se llama express.json, para que los requests salgan de tipo JSON. 
+// Usamos un middleware de cors para poder hacer request desde muchos origenes.
 
-// await UserModel.find()
-// .then((u)=> console.log("usuario", u))
-// .catch((e)=> console.log("error obteniendo el usuario", e))
+const app = express();
+app.use(express.json());
+app.use(cors());
 
+app.listen({ port: process.env.PORT || 4000 }, async () => {
+    await conectarBD();
+    // Prender servidor de apollo: 
+    await server.start()
+    // middleware para decirle que utilice los mismos middlewares de express:
+    server.applyMiddleware( { app });
+    console.log("servidor listo")
+})
 
-// EDITAR un Usuario
-
-/* await UserModel.findOneAndUpdate({ correo: "lilo@gmail.com"}, { nombre: "mora" })
-.then((u)=> console.log("usuario", u))
-.catch((e)=> console.log("error cambiando el usuario", e))  */
-
-
-//ELIMINAR un Usuario
-
-// await UserModel.findOneAndDelete({ correo: "lilo@gmail.com"})
-// .then((u)=> console.log("usuario", u))
-// .catch((e)=> console.log("error eliminando el usuario", e))
-
-};
-
-
-main();
-
+// 4. Definir en el paso 1 los resolvers y tipos 

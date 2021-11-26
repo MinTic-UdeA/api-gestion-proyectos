@@ -48,6 +48,10 @@ const userSchema = new Schema({
         enum: ['AUTORIZADO', 'NO_AUTORIZADO', 'PENDIENTE'],
         default: 'PENDIENTE',
     },
+    // password: {
+    //     type: String,
+    //     required: true
+    // }
 })
 
 //Hasta aquí ya está el esquema, ahora se debe definir el modelo "User"
