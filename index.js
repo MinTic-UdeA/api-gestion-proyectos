@@ -11,7 +11,7 @@ import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
-import { typeDefs } from './src/graphql/types.js';
+import { tipos } from './src/graphql/types.js';
 import { resolvers } from './src/graphql/resolvers.js';
 
 dotenv.config();
@@ -19,7 +19,7 @@ dotenv.config();
 // 1. Definir un servidor de GraphQL. Pasamos 2 propiedades: los resolvers y los tipos (cada una de las definiciones que tienen los modelos)
 
 const server = new ApolloServer({
-    typeDefs: typeDefs,
+    typeDefs: tipos,
     resolvers: resolvers
 })
 

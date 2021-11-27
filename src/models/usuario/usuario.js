@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 // import { Enum_Rol, Enum_EstadoUsuario } from './enums/enums';
 const { Schema, model } = mongoose
 
+// Esto se usaba para TS
 // interface User {
 //   correo: string;
 //   identificacion: string;
@@ -12,7 +13,7 @@ const { Schema, model } = mongoose
 //   estado: Enum_EstadoUsuario;
 // }
 
-// Construir el esquema y definir el modelo para poder conectarme con la coleccion de Usuario
+// Construir el esquema de Mongoose y definir el modelo para poder conectarme con la coleccion de Usuario
 
 const userSchema = new Schema({
     correo: {
@@ -48,15 +49,11 @@ const userSchema = new Schema({
         enum: ['AUTORIZADO', 'NO_AUTORIZADO', 'PENDIENTE'],
         default: 'PENDIENTE',
     },
-    // password: {
-    //     type: String,
-    //     required: true
-    // }
 })
 
-//Hasta aquí ya está el esquema, ahora se debe definir el modelo "User"
+//Hasta aquí ya está el esquema, ahora se debe definir el modelo "User" (es el nombre que tendrá la colección)
 
-const UserModel = model("User", userSchema);
+const UsuarioModel = model("User", userSchema);
 
-export { UserModel };
+export { UsuarioModel };
 

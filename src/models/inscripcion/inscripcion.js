@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { Schema, model } from "mongoose";
-import { UserModel } from "./src/models/user.js";
+import { UsuarioModel } from "./src/models/user.js";
 // import { Enum_EstadoInscripcion } from "./enums/enums"
 
 // interface Inscripcion {
@@ -33,7 +33,7 @@ const inscripcionSchema = new Schema({
     },
     estudiante: {
         type: Schema.Types.ObjectId,
-        ref: UserModel,
+        ref: UsuarioModel,
         required: true,
     },
 });

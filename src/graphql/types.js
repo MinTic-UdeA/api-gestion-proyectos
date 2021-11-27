@@ -1,60 +1,18 @@
-// Aqui se hace la copia de los esquemas
+// Aqui vamos a definir los tipos globales e importar los tipos de otros archivos que hemos creado
 import { gql } from "apollo-server-express";
+import { tiposUsuario } from "..models/usuario/usuario.js"
+import { tiposProyecto } from "..models/usuario/usuario.js"
+//import { tiposUsuario } from "..models/usuario/usuario.js"
 
-// enum Enum_EstadoUsuario{
-//     AUTORIZADO,
-//     NO_AUTORIZADO,
-//     PENDIENTE,
-// }
 
-// enum Enum_Rol{
-//     ESTUDIANTE,
-//     LIDER,
-//     ADMINISTRADOR
-// }
-// estado: Enum_EstadoUsuario!
-// rol: Enum_Rol!
-
-const typeDefs = gql`
+const tiposGlobales = gql`
 
     scalar Date
 
-    type Usuario {
-        _id: ID!
-        nombre: String!
-        apellido: String!
-        identificacion: String!
-        correo: String!
-    }
-
-    type Query { 
-        Usuarios: [Usuario]
-        Usuario(_id: String!): Usuario
-    }
-
-    type Mutation {
-        crearUsuario(
-        nombre: String!
-        apellido: String!
-        identificacion: String!
-        correo: String!
-        ): Usuario
-
-        eliminarUsuario(
-           _id: String!
-        ): Usuario
-
-        editarUsuario(
-        _id: String!
-        nombre: String!
-        apellido: String!
-        identificacion: String!
-        correo: String!
-        ): Usuario
-    }
 `
+export const tipos = [ tiposUsuario, tiposProyecto, tiposGlobales ]
 
-export { typeDefs };
+// lo exporto de esa forma para asegurar que pueda usar todos al tiempo, debo ir al index y cambiar el valor de typeDefs por tipos
 
-// En el query digo como se llama y que tipo de dato devuelve. 
+
 

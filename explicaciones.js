@@ -1,7 +1,7 @@
 import conectarBD from "./src/db/db.js";
 import dotenv from 'dotenv';
 // import { Enum_Rol } from "./src/db/models/enums/enums";
-import { UserModel } from "./src/models/user.js";
+import { UsuarioModel } from "./src/models/user.js";
 import { ProyectoModel } from "./src/models/proyecto.js";
 import { AvanceModel } from "./src/models/avance.js"
 import { InscripcionModel } from "./src/models/inscripcion.js"
@@ -13,7 +13,7 @@ const main = async () => {
 
 // CREAR un Usuario
 
-await UserModel.create({
+await UsuarioModel.create({
   correo: "luciana@hotmail.com",
   identificacion: "999",
   nombre: "luciana",
@@ -26,21 +26,21 @@ await UserModel.create({
 
 // OBTENER un Usuario
 
-// await UserModel.find()
+// await UsuarioModel.find()
 // .then((u)=> console.log("usuario", u))
 // .catch((e)=> console.log("error obteniendo el usuario", e))
 
 
 // EDITAR un Usuario
 
-/* await UserModel.findOneAndUpdate({ correo: "lilo@gmail.com"}, { nombre: "mora" })
+/* await UsuarioModel.findOneAndUpdate({ correo: "lilo@gmail.com"}, { nombre: "mora" })
 .then((u)=> console.log("usuario", u))
 .catch((e)=> console.log("error cambiando el usuario", e))  */
 
 
 //ELIMINAR un Usuario
 
-// await UserModel.findOneAndDelete({ correo: "lilo@gmail.com"})
+// await UsuarioModel.findOneAndDelete({ correo: "lilo@gmail.com"})
 // .then((u)=> console.log("usuario", u))
 // .catch((e)=> console.log("error eliminando el usuario", e))
 
