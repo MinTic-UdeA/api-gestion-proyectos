@@ -1,6 +1,7 @@
 // Aqui se hace la "copia" de los esquemas de Usuarios que habíamos hecho en Mongoose. 
 import { gql } from "apollo-server-express";
 
+//Esto lo usábamos en TS
 // enum Enum_EstadoUsuario{
 //     AUTORIZADO,
 //     NO_AUTORIZADO,
@@ -24,40 +25,46 @@ const tiposUsuario = gql`
         apellido: String!
         identificacion: String!
         correo: String!
-        # rol: 
-        # estado: 
+        # estos son los enums de gql
+        rol: Enum_Rol!
+        estado: Enum_EstadoUsuario
+        # para poder hacer los virtual populate
+
     }
 
-    ### OJO: estoy pendiente de revisar en el repo si las propiedades que coloca en los tipos de acá arriba son los mismos que reciben las funciones abajo
-
     """aqui estaríamos haciendo una consulta, y esa consulta se llama Usuario y Usuarios.
-    Usuario me devuelve un array de Usuario. Mientras que Usuario me devuelve el Usuario con el ID que le pasé  """ 
-    type Query { 
+    Usuario me devuelve un array de Usuario. Mientras que Usuario me devuelve el Usuario con el ID que le pasé""" 
+    type Query {
+        #READ 
         Usuarios: [Usuario]
         Usuario(_id: String!): Usuario
     }
 
     type Mutation {
-
-        #aquí definimos los inputs de estas funciones. Estas son las opciones que nos aparecerán en Apollo
+        # aquí definimos los inputs de estas funciones. Estas son las opciones que nos aparecerán en Apollo
+        #CREATE
         crearUsuario(
         nombre: String!
         apellido: String!
         identificacion: String!
         correo: String!
+        rol: Enum_Rol!
         ): Usuario
 
+        #UPDATE
+        editarUsuario(
+            _id: String!
+            nombre: String!
+            apellido: String!
+            identificacion: String!
+            correo: String!
+            estado: Enum_EstadoUsuario!
+            ): Usuario
+
+        #DELETE
         eliminarUsuario(
            _id: String!
-        ): Usuario
-
-        editarUsuario(
-        _id: String!
-        nombre: String!
-        apellido: String!
-        identificacion: String!
-        correo: String!
-        ): Usuario
+        ): Usuario  
     }
 `
 

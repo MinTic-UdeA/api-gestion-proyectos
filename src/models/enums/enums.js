@@ -1,3 +1,5 @@
+// Estos eran los tipos que usábamos en TypeScript
+
 // enum Enum_Rol {
 //   estudiante = "estudiante",
 //   lider = "lider",

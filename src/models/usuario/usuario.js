@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 // import { Schema, model } from "mongoose";
 // import { Enum_Rol, Enum_EstadoUsuario } from './enums/enums';
-const { Schema, model } = mongoose
+const { Schema, model } = mongoose;
 
 // Esto se usaba para TS
 // interface User {
@@ -50,6 +50,12 @@ const userSchema = new Schema({
         default: 'PENDIENTE',
     },
 })
+
+// Virtual populate para poder relacionar la información en la relación de One to Many
+
+
+
+
 
 //Hasta aquí ya está el esquema, ahora se debe definir el modelo "User" (es el nombre que tendrá la colección)
 

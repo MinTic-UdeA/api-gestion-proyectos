@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
-import { Schema, model } from "mongoose";
-import { UsuarioModel } from "./src/models/user.js";
-// import { Enum_EstadoInscripcion } from "./enums/enums"
+// import { Schema, model } from "mongoose";
+import { UsuarioModel } from "../usuario/usuario.js";
+// import { Enum_EstadoInscripcion } from "./enums/enums";
+const { Schema, model } = mongoose;
 
 // interface Inscripcion {
 //     estado: Enum_EstadoInscripcion;

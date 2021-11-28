@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 // import { Schema, model } from "mongoose";
-import { ProyectoModel } from "models/proyecto.js"
-import { UsuarioModel } from "./src/models/user.js";
+import { ProyectoModel } from "../proyecto/proyecto.js";
+import { UsuarioModel } from "../usuario/usuario.js";
+const { Schema, model } = mongoose
 
 // interface Avance {
 //   fecha: Date;
@@ -37,6 +38,6 @@ const avanceSchema = new Schema({
   },
 });
 
-const ModeloAvance = model('Avance', avanceSchema);
+const AvanceModel = model('Avance', avanceSchema);
 
-export { ModeloAvance };
+export { AvanceModel };
