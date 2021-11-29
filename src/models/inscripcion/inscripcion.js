@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 // import { Schema, model } from "mongoose";
 import { UsuarioModel } from "../usuario/usuario.js";
+import { ProyectoModel } from "../proyecto/proyecto.js";
 // import { Enum_EstadoInscripcion } from "./enums/enums";
 const { Schema, model } = mongoose;
 

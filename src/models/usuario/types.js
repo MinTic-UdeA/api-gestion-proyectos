@@ -13,8 +13,6 @@ import { gql } from "apollo-server-express";
 //     LIDER,
 //     ADMINISTRADOR
 // }
-// estado: Enum_EstadoUsuario!
-// rol: Enum_Rol!
 
 const tiposUsuario = gql`
     
@@ -49,6 +47,7 @@ const tiposUsuario = gql`
         identificacion: String!
         correo: String!
         rol: Enum_Rol!
+        estado: Enum_EstadoUsuario
         ): Usuario
 
         #UPDATE

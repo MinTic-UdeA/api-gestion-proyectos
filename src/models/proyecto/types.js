@@ -6,8 +6,9 @@
 import { gql } from "apollo-server-express";
 
 const tiposProyecto = gql`
-    type Proyecto: {
-        _id: ID
+
+    type Proyecto {
+        _id: ID!
         nombre: String!
         objGeneral: String!
         objEspecificos: String!
@@ -18,13 +19,14 @@ const tiposProyecto = gql`
         fase: Enum_FaseProyecto
         lider: Usuario!
         # para hacer virtual populate
-
     }
-    type Query: {
+
+    type Query {
         Proyectos: [Proyecto]
         Proyecto(_id: String!): Proyecto
     }
-    type Mutation: {
+    
+    type Mutation {
         #CREATE
         crearProyecto(
             nombre: String!
@@ -37,17 +39,55 @@ const tiposProyecto = gql`
         ): Proyecto
         #UPDATE
         EditarProyecto(
+            _id: String!
             nombre: String!
             objGeneral: String!
             objEspecificos: String!
             presupuesto: Float!
             fechaInicio: Date!
             fechaFin: Date!
-            lider: String!
+            # lider: String!
         ): Proyecto
         #DELETE
         EliminarProyecto(_id: String!): Proyecto
     }
-
 `
 export { tiposProyecto };
+
+// const tiposProyecto = gql`
+
+//   type Proyecto {
+//     _id: ID!
+//     nombre: String!
+//     presupuesto: Float!
+//     fechaInicio: Date!
+//     fechaFin: Date!
+//     estado: Enum_EstadoProyecto!
+//     fase: Enum_FaseProyecto!
+//     lider: Usuario!
+//     objetivos: [Objetivo]
+//     avances: [Avance]
+//     inscripciones: [Inscripcion]
+//   }
+//   type Query {
+//     Proyectos: [Proyecto]
+//   }
+//   type Mutation {
+//     crearProyecto(
+//       nombre: String!
+//       presupuesto: Float!
+//       fechaInicio: Date!
+//       fechaFin: Date!
+//       estado: Enum_EstadoProyecto!
+//       fase: Enum_FaseProyecto!
+//       lider: String!
+//       objetivos: [crearObjetivo]
+//     ): Proyecto
+//     editarProyecto(_id: String!, campos: camposProyecto!): Proyecto
+//     crearObjetivo(idProyecto: String!, campos: camposObjetivo!): Proyecto
+//     editarObjetivo(idProyecto: String!, indexObjetivo: Int!, campos: camposObjetivo!): Proyecto
+//     eliminarObjetivo(idProyecto: String!, idObjetivo: String!): Proyecto
+//   }
+// `;
+
+// export { tiposProyecto };

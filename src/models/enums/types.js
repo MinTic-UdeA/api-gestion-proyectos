@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
 
-const tiposEnum = gql`
+const tiposEnums = gql`
     enum Enum_Rol {
         ESTUDIANTE
         ADMINISTRADOR
@@ -32,4 +32,4 @@ const tiposEnum = gql`
     }
 `
 
-export { tiposEnum };
+export { tiposEnums };

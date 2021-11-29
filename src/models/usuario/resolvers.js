@@ -22,9 +22,9 @@ const resolversUsuario = {
                 correo: args.correo,
                 rol: args.rol,
             });
-            // if (Object.keys(args).includes("estado")) {
-            //     usuarioCreado.estado = args.estado
-            // }
+            if (Object.keys(args).includes("estado")) {
+                usuarioCreado.estado = args.estado
+            }
             return usuarioCreado
         },
         editarUsuario: async (parent, args) => {
@@ -34,7 +34,7 @@ const resolversUsuario = {
                 identificacion: args.identificacion,
                 correo: args.correo,
                 estado: args.estado
-            })
+            }, { new: true })
             return usuarioEditado
         },
         eliminarUsuario: async (parent, args) => {
