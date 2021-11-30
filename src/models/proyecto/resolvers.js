@@ -1,10 +1,10 @@
 import { ProyectoModel } from "./proyecto.js";
 
 const resolversProyecto = {
-
+    
     Query: {
         Proyectos: async (parent, args) => {
-            const proyectos = await ProyectoModel.find()
+            const proyectos = await ProyectoModel.find().populate("lider")
             return proyectos;
         },
         Proyecto: async (parent, args) => {
@@ -14,7 +14,6 @@ const resolversProyecto = {
     },
 
     Mutation: {
-        // lideres crean proyectos
         crearProyecto: async (parent, args) => {
             const proyectoCreado = await ProyectoModel.create({
                 nombre: args.nombre,
@@ -26,10 +25,9 @@ const resolversProyecto = {
                 lider: args.lider
             })
             return proyectoCreado
-        },
-        // lideres editan proyectos
-        EditarProyecto: async (parent, args) => {
-            const proyectoEditado = await ProyectoModel.findOneAndUpdate( args.id, {
+        }, 
+        editarProyecto: async (parent, args) => {
+            const proyectoEditado = await ProyectoModel.findByIdAndUpdate( args._id, {
                 nombre: args.nombre,
                 objGeneral: args.objGeneral,
                 objEspecificos: args.objEspecificos,
@@ -38,8 +36,15 @@ const resolversProyecto = {
                 fechaFin: args.fechaFin,
             }, { new: true })
             return proyectoEditado
+        }, 
+        // Falta que: Cuando cambia de inactivo a activo, y la fase es nula, esta fase se actualiza a iniciado y se captura la fecha inicial
+        aprobarProyecto: async (parent, args) => {
+            const proyectoAprobado = await ProyectoModel.findByIdAndUpdate( args._id, {
+                estado: "ACTIVO"
+            }, { new: true })
+            return proyectoAprobado
         },
-        EliminarProyecto: async (parent, args) => {
+        eliminarProyecto: async (parent, args) => {
             const proyectoEliminado = await ProyectoModel.findOneAndDelete({ _id: args._id })
             return proyectoEliminado
         }

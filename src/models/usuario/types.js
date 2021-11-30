@@ -30,7 +30,7 @@ const tiposUsuario = gql`
 
     }
 
-    """aqui estaríamos haciendo una consulta, y esa consulta se llama Usuario y Usuarios.
+    """Aqui estaríamos haciendo una consulta, y esa consulta se llama Usuario y Usuarios.
     Usuario me devuelve un array de Usuario. Mientras que Usuario me devuelve el Usuario con el ID que le pasé""" 
     type Query {
         #READ 
@@ -51,14 +51,19 @@ const tiposUsuario = gql`
         ): Usuario
 
         #UPDATE
+        # cada usuario puede editar su propia informacion personal
         editarUsuario(
             _id: String!
             nombre: String!
             apellido: String!
             identificacion: String!
             correo: String!
-            estado: Enum_EstadoUsuario!
             ): Usuario
+        # el administrador puede cambiar el estado de adm, est, y lid. Lideres pueden cambiar el estado de estudiantes
+        aprobarUsuario(
+            _id: String!
+            estado: Enum_EstadoUsuario!
+        ): Usuario
 
         #DELETE
         eliminarUsuario(

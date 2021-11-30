@@ -9,7 +9,7 @@ const proyectoSchema = new Schema({
         type: String,
         required: true,
     },
-    objGeneral: {
+    objGeneral: { 
         type: String,
         required: true,
     },
@@ -27,7 +27,7 @@ const proyectoSchema = new Schema({
     },
     fechaFin: {
         type: Date,
-        required: true 
+        required: true
     },
     estado: {
         type: String,
@@ -38,12 +38,31 @@ const proyectoSchema = new Schema({
         type: String,
         enum: ['INICIADO', 'DESARROLLO', 'TERMINADO', 'NULO'],
         default: 'NULO',
-    }, 
+    },
     lider: {
         type: Schema.Types.ObjectId,
         ref: UsuarioModel
-    },        
-});
+    },
+},
+    {
+        toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
+        toObject: { virtuals: true }, // So `console.log()` and other functions that use `toObject()` include virtuals
+    }
+);
+
+// populate para habilitar populate y campos virtuales 
+proyectoSchema.virtual('inscripciones', {
+    ref: 'Inscripcion',
+    localField: '_id',
+    foreignField: 'proyecto',
+  })
+
+proyectoSchema.virtual("avances", {
+    ref: "avance",
+    localField: "_id",
+    foreignField: "proyecto"
+})
+
 
 const ProyectoModel = model("Proyecto", proyectoSchema);
 

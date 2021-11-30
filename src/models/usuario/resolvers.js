@@ -21,25 +21,27 @@ const resolversUsuario = {
                 identificacion: args.identificacion,
                 correo: args.correo,
                 rol: args.rol,
-            });
-            if (Object.keys(args).includes("estado")) {
-                usuarioCreado.estado = args.estado
-            }
+            })
             return usuarioCreado
         },
         editarUsuario: async (parent, args) => {
-            const usuarioEditado = await UsuarioModel.findOneAndUpdate(args._id, { 
+            const usuarioEditado = await UsuarioModel.findByIdAndUpdate(args._id, { 
                 nombre: args.nombre,
                 apellido: args.apellido,
                 identificacion: args.identificacion,
                 correo: args.correo,
-                estado: args.estado
             }, { new: true })
             return usuarioEditado
         },
+        aprobarUsuario: async (parent, args) => {
+            const usuarioAprobado = await UsuarioModel.findByIdAndUpdate(args._id, {
+                estado: args.estado
+            }, { new: true })
+            return usuarioAprobado
+        },
         eliminarUsuario: async (parent, args) => {
             const key = Object.keys(args)
-            const usuarioEliminado = await UsuarioModel.findOneAndDelete( { key } )
+            const usuarioEliminado = await UsuarioModel.findByIdAndDelete( { key } )
             return usuarioEliminado
         },
     }

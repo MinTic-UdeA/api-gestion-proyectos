@@ -18,16 +18,19 @@ const tiposProyecto = gql`
         estado: Enum_EstadoProyecto
         fase: Enum_FaseProyecto
         lider: Usuario!
-        # para hacer virtual populate
+        avances: [Avance]
+        inscripciones: [Inscripcion]
     }
 
     type Query {
+        # lid, est, y adm pueden ver los proyectos
         Proyectos: [Proyecto]
         Proyecto(_id: String!): Proyecto
     }
     
     type Mutation {
         #CREATE
+        # lideres crean proyectos
         crearProyecto(
             nombre: String!
             objGeneral: String!
@@ -36,9 +39,12 @@ const tiposProyecto = gql`
             fechaInicio: Date!
             fechaFin: Date!
             lider: String!
+            # estado: Enum_EstadoProyecto
+            # fase: Enum_FaseProyecto
         ): Proyecto
         #UPDATE
-        EditarProyecto(
+        # lideres actualizan proyectos
+        editarProyecto(
             _id: String!
             nombre: String!
             objGeneral: String!
@@ -46,10 +52,15 @@ const tiposProyecto = gql`
             presupuesto: Float!
             fechaInicio: Date!
             fechaFin: Date!
-            # lider: String!
+        ): Proyecto 
+        # admin aprueba los proyectos creados actualizando su estado
+        aprobarProyecto(
+            _id: String!
+            estado: Enum_EstadoProyecto
+            fase: Enum_FaseProyecto
         ): Proyecto
         #DELETE
-        EliminarProyecto(_id: String!): Proyecto
+        eliminarProyecto(_id: String!): Proyecto
     }
 `
 export { tiposProyecto };
