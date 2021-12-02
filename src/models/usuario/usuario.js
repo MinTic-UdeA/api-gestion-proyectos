@@ -27,6 +27,10 @@ const userSchema = new Schema({
             message: 'El formato del correo electrónico es incorrecto.',
           },
     },
+    password: {
+        type: String,
+        required: true
+    },
     identificacion: {
         type: String,
         required: true,

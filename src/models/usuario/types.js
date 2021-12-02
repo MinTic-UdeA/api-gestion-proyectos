@@ -23,11 +23,8 @@ const tiposUsuario = gql`
         apellido: String!
         identificacion: String!
         correo: String!
-        # estos son los enums de gql
         rol: Enum_Rol!
         estado: Enum_EstadoUsuario
-        # para poder hacer los virtual populate
-
     }
 
     """Aqui estaríamos haciendo una consulta, y esa consulta se llama Usuario y Usuarios.
@@ -48,6 +45,7 @@ const tiposUsuario = gql`
         correo: String!
         rol: Enum_Rol!
         estado: Enum_EstadoUsuario
+        password: String!
         ): Usuario
 
         #UPDATE

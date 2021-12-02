@@ -58,6 +58,14 @@ const tiposProyecto = gql`
             _id: String!
             estado: Enum_EstadoProyecto
             fase: Enum_FaseProyecto
+            fechaInicio: Date
+        ): Proyecto
+        # lideres
+        aprobarProyecto(
+            _id: String!
+            estado: Enum_EstadoProyecto
+            fase: Enum_FaseProyecto
+            fechaInicio: Date
         ): Proyecto
         #DELETE
         eliminarProyecto(_id: String!): Proyecto

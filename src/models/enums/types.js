@@ -31,5 +31,4 @@ const tiposEnums = gql`
         RECHAZADA
     }
 `
-
 export { tiposEnums };
