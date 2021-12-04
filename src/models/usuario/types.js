@@ -23,7 +23,7 @@ const tiposUsuario = gql`
         apellido: String!
         identificacion: String!
         correo: String!
-        rol: Enum_Rol!
+        rol: Enum_Rol
         estado: Enum_EstadoUsuario
     }
 
@@ -45,7 +45,6 @@ const tiposUsuario = gql`
         correo: String!
         rol: Enum_Rol!
         estado: Enum_EstadoUsuario
-        password: String!
         ): Usuario
 
         #UPDATE

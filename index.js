@@ -42,4 +42,3 @@ app.listen({ port: process.env.PORT || 4000 }, async () => {
 
 // 4. Definir en el paso 1 los resolvers y tipos 
 
-// cambios para redespliegue
