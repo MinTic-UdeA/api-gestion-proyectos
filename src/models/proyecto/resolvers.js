@@ -1,54 +1,83 @@
-import { ProyectoModel } from "./proyecto.js";
+import { ProyectoModel } from './proyecto.js'
 
 const resolversProyecto = {
-    
-    Query: {
-        Proyectos: async (parent, args) => {
-            const proyectos = await ProyectoModel.find().populate("lider")
-            return proyectos;
-        },
-        Proyecto: async (parent, args) => {
-            const Proyecto = await ProyectoModel.findOne({ _id: args._id })
-            return Proyecto;
-        }
+  Query: {
+    Proyectos: async (parent, args) => {
+      const proyectos = await ProyectoModel.find().populate('lider')
+      return proyectos
     },
+    Proyecto: async (parent, args) => {
+      const Proyecto = await ProyectoModel.findOne({ _id: args._id })
+      return Proyecto
+    },
+  },
 
-    Mutation: {
-        crearProyecto: async (parent, args) => {
-            const proyectoCreado = await ProyectoModel.create({
-                nombre: args.nombre,
-                objGeneral: args.objGeneral,
-                objEspecificos: args.objEspecificos,
-                presupuesto: args.presupuesto,
-                fechaInicio: args.fechaInicio,
-                fechaFin: args.fechaFin,
-                lider: args.lider
-            })
-            return proyectoCreado
-        }, 
-        editarProyecto: async (parent, args) => {
-            const proyectoEditado = await ProyectoModel.findByIdAndUpdate( args._id, {
-                nombre: args.nombre,
-                objGeneral: args.objGeneral,
-                objEspecificos: args.objEspecificos,
-                presupuesto: args.presupuesto,
-                fechaInicio: args.fechaInicio,
-                fechaFin: args.fechaFin,
-            }, { new: true })
-            return proyectoEditado
-        }, 
-        // Falta que: Cuando cambia de inactivo a activo, y la fase es nula, esta fase se actualiza a iniciado y se captura la fecha inicial
-        aprobarProyecto: async (parent, args) => {
-            const proyectoAprobado = await ProyectoModel.findByIdAndUpdate( args._id, {
-                estado: "ACTIVO"
-            }, { new: true })
-            return proyectoAprobado
+  Mutation: {
+    crearProyecto: async (parent, args) => {
+      const proyectoCreado = await ProyectoModel.create({
+        nombre: args.nombre,
+        objGeneral: args.objGeneral,
+        objEspecificos: args.objEspecificos,
+        presupuesto: args.presupuesto,
+        fechaInicio: args.fechaInicio,
+        fechaFin: args.fechaFin,
+        lider: args.lider,
+      })
+      return proyectoCreado
+    },
+    editarProyecto: async (parent, args) => {
+      const proyectoEditado = await ProyectoModel.findByIdAndUpdate(
+        args._id,
+        {
+          nombre: args.nombre,
+          objGeneral: args.objGeneral,
+          objEspecificos: args.objEspecificos,
+          presupuesto: args.presupuesto,
+          fechaInicio: args.fechaInicio,
+          fechaFin: args.fechaFin,
         },
-        eliminarProyecto: async (parent, args) => {
-            const proyectoEliminado = await ProyectoModel.findOneAndDelete({ _id: args._id })
-            return proyectoEliminado
-        }
-    }
+        { new: true }
+      )
+      return proyectoEditado
+    },
+    // Falta que: Cuando cambia de inactivo a activo, y la fase es nula, esta fase se actualiza a iniciado y se captura la fecha inicial
+    aprobarProyecto: async (parent, args) => {
+      const proyectoAprobado = await ProyectoModel.findByIdAndUpdate(
+        args._id,
+        {
+          estado: 'ACTIVO',
+        },
+        { new: true }
+      )
+      return proyectoAprobado
+    },
+    cambiarEstadoProyecto: async (parent, args) => {
+      const estadoProyecto = await ProyectoModel.findByIdAndUpdate(
+        args._id,
+        {
+          estado: args.estado,
+        },
+        { new: true }
+      )
+      return estadoProyecto
+    },
+    cambiarFaseProyecto: async (parent, args) => {
+      const estadoProyecto = await ProyectoModel.findByIdAndUpdate(
+        args._id,
+        {
+          fase: args.fase,
+        },
+        { new: true }
+      )
+      return estadoProyecto
+    },
+    eliminarProyecto: async (parent, args) => {
+      const proyectoEliminado = await ProyectoModel.findOneAndDelete({
+        _id: args._id,
+      })
+      return proyectoEliminado
+    },
+  },
 }
 
-export { resolversProyecto };
+export { resolversProyecto }
