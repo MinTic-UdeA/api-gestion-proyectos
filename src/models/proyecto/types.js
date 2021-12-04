@@ -26,6 +26,7 @@ const tiposProyecto = gql`
         # lid, est, y adm pueden ver los proyectos
         Proyectos: [Proyecto]
         Proyecto(_id: String!): Proyecto
+        listarProyectosByLider(lider: String): [Proyecto]
     }
     
     type Mutation {
@@ -50,8 +51,8 @@ const tiposProyecto = gql`
             objGeneral: String!
             objEspecificos: String!
             presupuesto: Float!
-            fechaInicio: Date!
-            fechaFin: Date!
+            estado: Enum_EstadoProyecto!
+            lider: String!
         ): Proyecto 
         # admin aprueba los proyectos creados actualizando su estado
         aprobarProyecto(
