@@ -21,8 +21,7 @@ const resolversAutenticacion = {
         correo: args.correo,
         rol: args.rol,
         password: hashedPassword
-      })
-      { token: generateToken({
+      }); return { token: generateToken({
         _id: usuarioRegistrado._id,
         nombre: usuarioRegistrado.nombre,
         apellido: usuarioRegistrado.apellido,
