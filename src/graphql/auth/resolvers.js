@@ -10,27 +10,28 @@ const resolversAutenticacion = {
   // devolver el token al front
 
   Mutation: {
-    registro: async (parent, args) => {
+    registrar: async (parent, args) => {
 
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(args.password, salt);
+      // const salt = await bcrypt.genSalt(10);
+      // const hashedPassword = await bcrypt.hash(args.password, salt);
       const usuarioRegistrado = await UsuarioModel.create({
         nombre: args.nombre,
         apellido: args.apellido,
         identificacion: args.identificacion,
         correo: args.correo,
         rol: args.rol,
-        password: hashedPassword
+        password: args.password
       })
 
-      return { token: generateToken({
-        _id: usuarioRegistrado._id,
-        nombre: usuarioRegistrado.nombre,
-        apellido: usuarioRegistrado.apellido,
-        identificacion: usuarioRegistrado.identificacion,
-        correo: usuarioRegistrado.correo,
-        rol: usuarioRegistrado.rol,
-      }) }
+      return "usuario registrado"
+      // { token: generateToken({
+      //   _id: usuarioRegistrado._id,
+      //   nombre: usuarioRegistrado.nombre,
+      //   apellido: usuarioRegistrado.apellido,
+      //   identificacion: usuarioRegistrado.identificacion,
+      //   correo: usuarioRegistrado.correo,
+      //   rol: usuarioRegistrado.rol,
+      // }) }
 
       // hasta aqui ya metimos la informacion de usuario registrado en ese Token. 
     }

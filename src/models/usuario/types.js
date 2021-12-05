@@ -45,6 +45,7 @@ const tiposUsuario = gql`
         correo: String!
         rol: Enum_Rol!
         estado: Enum_EstadoUsuario
+        password: String!
         ): Usuario
 
         #UPDATE
@@ -55,6 +56,7 @@ const tiposUsuario = gql`
             apellido: String!
             identificacion: String!
             correo: String!
+            password: String!
             ): Usuario
         # el administrador puede cambiar el estado de adm, est, y lid. Lideres pueden cambiar el estado de estudiantes
         aprobarUsuario(
