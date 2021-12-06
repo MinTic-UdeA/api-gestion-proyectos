@@ -7,7 +7,6 @@ import { tiposInscripcion } from "../models/inscripcion/types.js"
 import { tiposEnums } from "../models/enums/types.js"
 import { tiposAutenticacion } from "./auth/types.js"
 
-
 const tiposGlobales = gql`
 
     scalar Date

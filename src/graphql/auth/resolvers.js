@@ -31,7 +31,49 @@ const resolversAutenticacion = {
       }) }
 
       // hasta aqui ya metimos la informacion de usuario registrado en ese Token. 
-    }
+    },
+    
+
+    // generamos un token si la comparacion es TRUE
+    login: async (parent, args) => {
+      const usuarioEcontrado = await UsuarioModel.findOne({ correo: args.correo });
+      if (await bcrypt.compare(args.password, usuarioEcontrado.password)) {
+        return {
+          token: generateToken({
+            _id: usuarioEcontrado._id,
+            nombre: usuarioEcontrado.nombre,
+            apellido: usuarioEcontrado.apellido,
+            identificacion: usuarioEcontrado.identificacion,
+            correo: usuarioEcontrado.correo,
+            rol: usuarioEcontrado.rol,
+          }),
+        };
+      }
+    },
+
+    refreshToken: async (parent, args, context) => {
+      console.log('contexto', context);
+      if (!context.userData) {
+        return {
+          error: 'token no valido',
+        };
+      } else {
+        return {
+          token: generateToken({
+            _id: context.userData._id,
+            nombre: context.userData.nombre,
+            apellido: context.userData.apellido,
+            identificacion: context.userData.identificacion,
+            correo: context.userData.correo,
+            rol: context.userData.rol,
+          }),
+        };
+      }
+    },
+
+
+
+
   }
 }
 

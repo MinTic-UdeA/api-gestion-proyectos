@@ -1,4 +1,5 @@
 import { InscripcionModel } from "./inscripcion.js";
+import { UsuarioModel } from "../usuario/usuario.js";
 
 const resolversInscripcion = {
     Query: {
@@ -10,7 +11,8 @@ const resolversInscripcion = {
     Mutation: {
         crearInscripcion: async (parent, args) => {
             const inscripcionCreada = await InscripcionModel.create({
-                
+                proyecto: args.proyecto,
+                estudiante: args.estudiante
         }) 
         return inscripcionCreada     
     }, 

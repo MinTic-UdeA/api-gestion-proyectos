@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 // import { Schema, model } from "mongoose";
 // import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from './enums/enums';
 import { UsuarioModel } from '../usuario/usuario.js';
+
 const { Schema, model } = mongoose;
 
 const proyectoSchema = new Schema({
