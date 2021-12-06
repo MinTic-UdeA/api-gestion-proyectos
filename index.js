@@ -20,7 +20,9 @@ dotenv.config();
 
 const server = new ApolloServer({
     typeDefs: tipos,
-    resolvers: resolvers
+    resolvers: resolvers,
+    // context: ()=> {
+    // }
 })
 
 // 2. Definimos nuestra aplicacion de Express.
