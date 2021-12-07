@@ -16,7 +16,7 @@ const tiposInscripcion = gql`
     }
 
     type Query {
-        Inscripciones: [Inscripcion]
+        listarInscripciones(lider: String!): [Inscripcion]
     }
 
     type Mutation {
