@@ -30,8 +30,6 @@ const resolversAvance = {
             return avanceEditado;
         },
     },
-
-
 }
 
 export { resolversAvance };

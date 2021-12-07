@@ -5,6 +5,5 @@ import { resolversAvance } from "../models/avance/resolvers.js"
 import { resolversInscripcion } from "../models/inscripcion/resolvers.js"
 import { resolversAutenticacion } from "./auth/resolvers.js"
 
-
 export const resolvers = [ resolversUsuario, resolversProyecto, resolversAvance, resolversInscripcion, resolversAutenticacion ];
 

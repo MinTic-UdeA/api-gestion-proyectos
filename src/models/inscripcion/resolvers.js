@@ -24,7 +24,6 @@ const resolversInscripcion = {
             return inscripcionAprobada
         }
     }
-
 }
 
 export { resolversInscripcion };

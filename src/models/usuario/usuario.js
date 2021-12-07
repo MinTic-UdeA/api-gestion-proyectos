@@ -55,12 +55,6 @@ const userSchema = new Schema({
     },
 })
 
-// Virtual populate para poder relacionar la información en la relación de One to Many
-
-
-
-
-
 //Hasta aquí ya está el esquema, ahora se debe definir el modelo "User" (es el nombre que tendrá la colección)
 
 const UsuarioModel = model("User", userSchema);

@@ -26,5 +26,4 @@ const tiposAutenticacion = gql`
 `;
 
 export { tiposAutenticacion };
-
 // se exporta a los types globales
