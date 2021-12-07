@@ -7,13 +7,9 @@ import { tiposInscripcion } from "../models/inscripcion/types.js"
 import { tiposEnums } from "../models/enums/types.js"
 import { tiposAutenticacion } from "./auth/types.js"
 
-
 const tiposGlobales = gql`
-
     scalar Date
-
 `
-
 export const tipos = [ tiposGlobales, tiposUsuario, tiposProyecto, tiposAvance, tiposInscripcion, tiposEnums, tiposAutenticacion ]
 
 // lo exporto de esa forma para asegurar que pueda usar todos al tiempo, debo ir al index y cambiar el valor de typeDefs por tipos

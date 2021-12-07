@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 // import { Schema, model } from "mongoose";
 // import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from './enums/enums';
 import { UsuarioModel } from '../usuario/usuario.js';
+
 const { Schema, model } = mongoose;
 
 const proyectoSchema = new Schema({
@@ -51,6 +52,7 @@ const proyectoSchema = new Schema({
 );
 
 // populate para habilitar populate y campos virtuales 
+
 proyectoSchema.virtual('inscripciones', {
     ref: 'Inscripcion',
     localField: '_id',
@@ -58,11 +60,10 @@ proyectoSchema.virtual('inscripciones', {
   })
 
 proyectoSchema.virtual("avances", {
-    ref: "avance",
+    ref: "Avance",
     localField: "_id",
     foreignField: "proyecto"
 })
-
 
 const ProyectoModel = model("Proyecto", proyectoSchema);
 

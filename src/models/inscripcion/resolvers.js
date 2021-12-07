@@ -1,16 +1,21 @@
 import { InscripcionModel } from "./inscripcion.js";
+import { UsuarioModel } from "../usuario/usuario.js";
 
 const resolversInscripcion = {
     Query: {
-        Inscripciones: async (parent, args) => {
-            const inscripciones = await InscripcionModel.find()
+        listarInscripciones: async (parent, args) => {
+            const inscripciones = await InscripcionModel.find({lider:args.lider})
+                                                        .populate("proyecto")
+                                                        .populate("estudiante")
+            console.log(inscripciones);
             return inscripciones         
         }
     },
     Mutation: {
         crearInscripcion: async (parent, args) => {
             const inscripcionCreada = await InscripcionModel.create({
-                
+                proyecto: args.proyecto,
+                estudiante: args.estudiante
         }) 
         return inscripcionCreada     
     }, 
@@ -22,7 +27,6 @@ const resolversInscripcion = {
             return inscripcionAprobada
         }
     }
-
 }
 
 export { resolversInscripcion };
