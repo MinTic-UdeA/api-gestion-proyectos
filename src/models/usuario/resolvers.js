@@ -10,7 +10,11 @@ const resolversUsuario = {
         Usuario: async (parent, args) => {
             const usuario = await UsuarioModel.findOne({_id: args._id})
             return usuario;
-        }
+        },
+        EstudiantesRegistrados: async (parent, args) => {
+            const estudiantes = await UsuarioModel.find({ rol: 'ESTUDIANTE' })
+            return estudiantes
+        },
     },
     
     Mutation: {
@@ -39,6 +43,16 @@ const resolversUsuario = {
             }, { new: true })
             return usuarioAprobado
         },
+        autorizarEstudiante: async (parent, args) => {
+            const usuarioAprobado = await UsuarioModel.findByIdAndUpdate(
+              args._id,
+              {
+                estado: args.estado,
+              },
+              { new: true }
+            )
+            return usuarioAprobado
+          },
         eliminarUsuario: async (parent, args) => {
             const key = Object.keys(args)
             const usuarioEliminado = await UsuarioModel.findByIdAndDelete( { key } )

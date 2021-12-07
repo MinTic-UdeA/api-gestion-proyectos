@@ -33,6 +33,7 @@ const tiposUsuario = gql`
         #READ 
         Usuarios: [Usuario]
         Usuario(_id: String!): Usuario
+        EstudiantesRegistrados: [Usuario]
     }
 
     type Mutation {
@@ -63,7 +64,8 @@ const tiposUsuario = gql`
             _id: String!
             estado: Enum_EstadoUsuario!
         ): Usuario
-
+        # Autorizar estudiante
+        autorizarEstudiante(_id: String!, estado: Enum_EstadoUsuario!): Usuario
         #DELETE
         eliminarUsuario(
            _id: String!
