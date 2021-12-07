@@ -2,7 +2,7 @@
   "name": "gestion-de-proyectos",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
@@ -11,7 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/MinTic-UdeA/api-gestion-proyectos.git"
   },
-  "author": "",
+  "keywords": [],
+  "author": "C4-DevOps",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MinTic-UdeA/api-gestion-proyectos/issues"
