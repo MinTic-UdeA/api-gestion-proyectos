@@ -1,5 +1,5 @@
-// Aqui se hace la "copia" de los esquemas de Usuarios que habíamos hecho en Mongoose. 
-import { gql } from "apollo-server-express";
+// Aqui se hace la "copia" de los esquemas de Usuarios que habíamos hecho en Mongoose.
+import { gql } from 'apollo-server-express'
 
 //Esto lo usábamos en TS
 // enum Enum_EstadoUsuario{
@@ -14,8 +14,7 @@ import { gql } from "apollo-server-express";
 //     ADMINISTRADOR
 // }
 
-const tiposUsuario = gql`
-    
+const tiposUsuario = gql`    
     type Usuario {
         _id: ID!
         nombre: String!
@@ -59,11 +58,11 @@ const tiposUsuario = gql`
             estado: Enum_EstadoUsuario!
         ): Usuario
 
+        autorizarEstudiante(_id: String!, estado: Enum_EstadoUsuario!): Usuario
+
         eliminarUsuario(
            _id: String!
         ): Usuario  
     }
 `
-
 export { tiposUsuario };
-

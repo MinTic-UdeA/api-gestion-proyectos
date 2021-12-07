@@ -3,8 +3,11 @@ import { UsuarioModel } from "../usuario/usuario.js";
 
 const resolversInscripcion = {
     Query: {
-        Inscripciones: async (parent, args) => {
-            const inscripciones = await InscripcionModel.find()
+        listarInscripciones: async (parent, args) => {
+            const inscripciones = await InscripcionModel.find({lider:args.lider})
+                                                        .populate("proyecto")
+                                                        .populate("estudiante")
+            console.log(inscripciones);
             return inscripciones         
         }
     },
