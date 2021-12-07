@@ -1,7 +1,7 @@
 import { UsuarioModel } from "./usuario.js";
 
 const resolversUsuario = {
-// Los args son los que pasa el usuario
+
     Query: {
         Usuarios: async (parent, args) => {
             const usuarios = await UsuarioModel.find()
@@ -50,7 +50,6 @@ const resolversUsuario = {
 export { resolversUsuario };
 
 // Otra forma de eliminarUsuario: 
-
 // if (Object.keys(args).includes('_id')) {
 //     const usuarioEliminado = await UserModel.findOneAndDelete({ _id: args._id });
 //     return usuarioEliminado;

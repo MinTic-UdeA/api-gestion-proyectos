@@ -46,6 +46,28 @@ const resolversProyecto = {
             }, { new: true })
             return proyectoAprobado
         },
+
+        cambiarEstadoProyecto: async (parent, args) => {
+          const estadoProyecto = await ProyectoModel.findByIdAndUpdate(
+            args._id,
+            {
+              estado: args.estado,
+            },
+            { new: true }
+          )
+          return estadoProyecto
+        },
+
+        cambiarFaseProyecto: async (parent, args) => {
+          const estadoProyecto = await ProyectoModel.findByIdAndUpdate(
+            args._id,
+            {
+              fase: args.fase,
+            },
+            { new: true }
+          )
+          return estadoProyecto
+        },
    
         eliminarProyecto: async (parent, args) => {
             const proyectoEliminado = await ProyectoModel.findOneAndDelete({ _id: args._id })
