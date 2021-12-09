@@ -13,16 +13,34 @@ import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
 import { tipos } from './src/graphql/types.js';
 import { resolvers } from './src/graphql/resolvers.js';
+import { validateToken } from './src/utils/tokenUtils.js'
 
 dotenv.config();
+
+const getUserData = (token) => {
+    const verification = validateToken(token.split(' ')[1]);
+    if (verification.data) {
+        return verification.data
+    } else {
+        return null
+    }
+
+}
 
 // 1. Definir un servidor de GraphQL. Pasamos 2 propiedades: los resolvers y los tipos (cada una de las definiciones que tienen los modelos)
 
 const server = new ApolloServer({
     typeDefs: tipos,
     resolvers: resolvers,
-    // context: ()=> {
-    // }
+    context: ({ req }) => {
+        const token = req.headers?.authorization ?? null;
+        if (token) {
+            const userData = getUserData(token);
+            if (userData) {
+                return { userData }
+            }
+        } return null;
+    }
 })
 
 // 2. Definimos nuestra aplicacion de Express.
@@ -38,7 +56,7 @@ app.listen({ port: process.env.PORT || 4000 }, async () => {
     // Prender servidor de apollo: 
     await server.start()
     // middleware para decirle que utilice los mismos middlewares de express:
-    server.applyMiddleware( { app });
+    server.applyMiddleware({ app });
     console.log("servidor listo")
 })
 
