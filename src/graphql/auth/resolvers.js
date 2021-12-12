@@ -9,7 +9,6 @@ const resolversAutenticacion = {
   // devolver el token al front
   Mutation: {
     registrar: async (parent, args) => {
-
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(args.password, salt);
       const usuarioRegistrado = await UsuarioModel.create({
@@ -18,7 +17,8 @@ const resolversAutenticacion = {
         identificacion: args.identificacion,
         correo: args.correo,
         rol: args.rol,
-        password: hashedPassword
+        password: hashedPassword,
+        estado: args.estado
       }); return {
         token: generateToken({
           _id: usuarioRegistrado._id,
@@ -27,6 +27,7 @@ const resolversAutenticacion = {
           identificacion: usuarioRegistrado.identificacion,
           correo: usuarioRegistrado.correo,
           rol: usuarioRegistrado.rol,
+          estado: usuarioRegistrado.estado
         })
       }
       // hasta aqui ya metimos la informacion de usuario registrado en ese Token. 
@@ -45,6 +46,7 @@ const resolversAutenticacion = {
             identificacion: usuarioEcontrado.identificacion,
             correo: usuarioEcontrado.correo,
             rol: usuarioEcontrado.rol,
+            estado: usuarioEcontrado.estado
           }),
         };
       }
@@ -54,7 +56,7 @@ const resolversAutenticacion = {
       console.log("contexto", context);
       if (!context.userData) {
         return {
-          error: "token no valido"
+          error: "TOKEN NO VÁLIDO"
         };
       } else {
         return {
@@ -62,9 +64,10 @@ const resolversAutenticacion = {
             _id: context.userData._id,
             nombre: context.userData.nombre,
             apellido: context.userData.apellido,
-            identificacion: context.userDataidentificacion,
+            identificacion: context.userData.identificacion,
             correo: context.userData.correo,
             rol: context.userData.rol,
+            estado: context.userData.estado
           }),
         }
       }

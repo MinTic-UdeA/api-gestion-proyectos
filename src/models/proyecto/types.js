@@ -34,14 +34,14 @@ const tiposProyecto = gql`
         # lideres crean proyectos
         crearProyecto(
             nombre: String!
-            objGeneral: String!
-            objEspecificos: String!
+            objGeneral: String
+            objEspecificos: String
             presupuesto: Float!
             fechaInicio: Date!
             fechaFin: Date!
             lider: String!
-            # estado: Enum_EstadoProyecto
-            # fase: Enum_FaseProyecto
+            estado: Enum_EstadoProyecto
+            fase: Enum_FaseProyecto
         ): Proyecto
         #UPDATE
         # lideres actualizan proyectos

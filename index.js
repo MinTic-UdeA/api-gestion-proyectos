@@ -19,6 +19,7 @@ dotenv.config();
 
 const getUserData = (token) => {
     const verification = validateToken(token.split(' ')[1]);
+    console.log(verification)
     if (verification.data) {
         return verification.data
     } else {
@@ -33,6 +34,7 @@ const server = new ApolloServer({
     typeDefs: tipos,
     resolvers: resolvers,
     context: ({ req }) => {
+        console.log("token desde el front", req.headers.authorization)
         const token = req.headers?.authorization ?? null;
         if (token) {
             const userData = getUserData(token);

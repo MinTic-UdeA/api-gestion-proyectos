@@ -3,12 +3,18 @@ import { UsuarioModel } from "./usuario.js";
 const resolversUsuario = {
 
     Query: {
-        Usuarios: async (parent, args) => {
-            const usuarios = await UsuarioModel.find()
-            return usuarios;
+        Usuarios: async (parent, args, context) => {
+            if (context.userData.rol === "ADMINISTRADOR") {
+                const usuarios = await UsuarioModel.find()
+                return usuarios;
+            } else if (context.userData.rol === "LIDER") {
+                const estudiantes = await UsuarioModel.find({ rol: 'ESTUDIANTE' })
+                return estudiantes;
+            }
         },
+
         Usuario: async (parent, args) => {
-            const usuario = await UsuarioModel.findOne({_id: args._id})
+            const usuario = await UsuarioModel.findOne({ _id: args._id })
             return usuario;
         },
         EstudiantesRegistrados: async (parent, args) => {
@@ -16,7 +22,7 @@ const resolversUsuario = {
             return estudiantes
         },
     },
-    
+
     Mutation: {
         crearUsuario: async (parent, args) => {
             const usuarioCreado = await UsuarioModel.create({
@@ -29,7 +35,7 @@ const resolversUsuario = {
             return usuarioCreado
         },
         editarUsuario: async (parent, args) => {
-            const usuarioEditado = await UsuarioModel.findByIdAndUpdate(args._id, { 
+            const usuarioEditado = await UsuarioModel.findByIdAndUpdate(args._id, {
                 nombre: args.nombre,
                 apellido: args.apellido,
                 identificacion: args.identificacion,
@@ -37,7 +43,7 @@ const resolversUsuario = {
             }, { new: true })
             return usuarioEditado
         },
-        aprobarUsuario: async (parent, args) => {
+        cambiarEstadoUsuario: async (parent, args) => {
             const usuarioAprobado = await UsuarioModel.findByIdAndUpdate(args._id, {
                 estado: args.estado
             }, { new: true })
@@ -45,17 +51,17 @@ const resolversUsuario = {
         },
         autorizarEstudiante: async (parent, args) => {
             const usuarioAprobado = await UsuarioModel.findByIdAndUpdate(
-              args._id,
-              {
-                estado: args.estado,
-              },
-              { new: true }
+                args._id,
+                {
+                    estado: args.estado,
+                },
+                { new: true }
             )
             return usuarioAprobado
-          },
+        },
         eliminarUsuario: async (parent, args) => {
             const key = Object.keys(args)
-            const usuarioEliminado = await UsuarioModel.findByIdAndDelete( { key } )
+            const usuarioEliminado = await UsuarioModel.findByIdAndDelete({ key })
             return usuarioEliminado
         },
     }

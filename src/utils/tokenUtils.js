@@ -9,10 +9,6 @@ expiresIn : en cuanto tiempo expira un token, tiempo que le damos al usuario par
 que mantenga la sesion iniciada. 
 */
 
-const generateToken = (payload) => {
-    return jwt.sign(payload, "secret", { expiresIn: "24h" })
-}
-
 const validateToken = (token) => {
     if (token) {
         const verification = jwt.verify(token, 'secret', (err, data) => {
@@ -27,9 +23,12 @@ const validateToken = (token) => {
                 };
             }
         });
-        console.log(verification, token);
         return verification;
     }
+}
+
+const generateToken = (payload) => {
+    return jwt.sign(payload, "secret", { expiresIn: "24h" })
 }
 
 export { generateToken, validateToken }
