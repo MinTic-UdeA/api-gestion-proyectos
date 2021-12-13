@@ -5,7 +5,7 @@ const resolversUsuario = {
     Query: {
         Usuarios: async (parent, args, context) => {
             if (context.userData.rol === "ADMINISTRADOR") {
-                const usuarios = await UsuarioModel.find()
+                const usuarios = await UsuarioModel.find() 
                 return usuarios;
             } else if (context.userData.rol === "LIDER") {
                 const estudiantes = await UsuarioModel.find({ rol: 'ESTUDIANTE' })

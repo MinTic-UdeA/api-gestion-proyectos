@@ -54,6 +54,7 @@ const tiposProyecto = gql`
             estado: Enum_EstadoProyecto
             fase: Enum_FaseProyecto
             fechaInicio: Date
+            fechaFin: Date
         ): Proyecto
         #Admin actualiza el estado del proyecto
         cambiarEstadoProyecto(_id: String!, estado: Enum_EstadoProyecto!): Proyecto

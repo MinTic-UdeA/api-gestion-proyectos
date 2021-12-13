@@ -31,9 +31,6 @@ const resolversProyecto = {
     },
     editarProyecto: async (parent, args) => {
       const proyectoEditado = await ProyectoModel.findByIdAndUpdate( args._id,
-        // {
-        //   $and: [{ _id: args._id }, { estado: args.estado }]
-        // },
         {
           nombre: args.nombre,
           objGeneral: args.objGeneral,
@@ -46,13 +43,13 @@ const resolversProyecto = {
     },
 
     aprobarProyecto: async (parent, args) => {
-      const proyectoAprobado = await ProyectoModel.findByIdAndUpdate(args._id, {
-        estado: "ACTIVO",
+        const proyectoAprobado = await ProyectoModel.findByIdAndUpdate(args._id, {
+        estado: args.estado,
         fase: "INICIADO",
         fechaInicio: Date.now()
       }, { new: true })
       return proyectoAprobado
-    },
+      },
 
     cambiarEstadoProyecto: async (parent, args) => {
       const estadoProyecto = await ProyectoModel.findByIdAndUpdate(
