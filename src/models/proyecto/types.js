@@ -13,8 +13,8 @@ const tiposProyecto = gql`
         objGeneral: String!
         objEspecificos: String!
         presupuesto: Float!
-        fechaInicio: Date!
-        fechaFin: Date!
+        fechaInicio: Date
+        fechaFin: Date
         estado: Enum_EstadoProyecto
         fase: Enum_FaseProyecto
         lider: Usuario!
@@ -37,11 +37,7 @@ const tiposProyecto = gql`
             objGeneral: String
             objEspecificos: String
             presupuesto: Float!
-            fechaInicio: Date!
-            fechaFin: Date!
             lider: String!
-            estado: Enum_EstadoProyecto
-            fase: Enum_FaseProyecto
         ): Proyecto
         #UPDATE
         # lideres actualizan proyectos
@@ -51,8 +47,6 @@ const tiposProyecto = gql`
             objGeneral: String!
             objEspecificos: String!
             presupuesto: Float!
-            estado: Enum_EstadoProyecto!
-            lider: String!
         ): Proyecto 
         # admin aprueba los proyectos creados actualizando su estado
         aprobarProyecto(
@@ -61,16 +55,9 @@ const tiposProyecto = gql`
             fase: Enum_FaseProyecto
             fechaInicio: Date
         ): Proyecto
-        # lideres
-        aprobarProyecto(
-            _id: String!
-            estado: Enum_EstadoProyecto
-            fase: Enum_FaseProyecto
-            fechaInicio: Date
-        ): Proyecto
         #Admin actualiza el estado del proyecto
         cambiarEstadoProyecto(_id: String!, estado: Enum_EstadoProyecto!): Proyecto
-        #Admin actualiza el fase del proyecto
+        #Admin actualiza la fase del proyecto
         cambiarFaseProyecto(_id: String!, fase: Enum_FaseProyecto!): Proyecto
         #DELETE
         eliminarProyecto(_id: String!): Proyecto

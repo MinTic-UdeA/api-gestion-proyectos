@@ -8,11 +8,12 @@ const resolversProyecto = {
       return proyectos;
     },
     Proyecto: async (parent, args) => {
-      const Proyecto = await ProyectoModel.findOne({ _id: args._id })
+      const Proyecto = await ProyectoModel.findById({ _id: args._id })
       return Proyecto;
     },
     listarProyectosByLider: async (parent, args) => {
-      const proyectos = await ProyectoModel.find({ lider: args.lider })
+      const proyectos = await ProyectoModel.find({ $and: [{lider: args.lider}, {estado: args.estado}]})
+      // const proyectos = await ProyectoModel.find({ lider: args.lider })
       return proyectos;
     }
   },
@@ -24,19 +25,15 @@ const resolversProyecto = {
         objGeneral: args.objGeneral,
         objEspecificos: args.objEspecificos,
         presupuesto: args.presupuesto,
-        fechaInicio: args.fechaInicio,
-        fechaFin: args.fechaFin,
         lider: args.lider,
-        estado: args.estado,
-        fase: args.fase
       })
       return proyectoCreado
     },
     editarProyecto: async (parent, args) => {
-      const proyectoEditado = await ProyectoModel.findOneAndUpdate(
-        {
-          $and: [{ _id: args._id }, { estado: args.estado }]
-        },
+      const proyectoEditado = await ProyectoModel.findByIdAndUpdate( args._id,
+        // {
+        //   $and: [{ _id: args._id }, { estado: args.estado }]
+        // },
         {
           nombre: args.nombre,
           objGeneral: args.objGeneral,
@@ -87,3 +84,7 @@ const resolversProyecto = {
 }
 
 export { resolversProyecto };
+
+// {
+//   $and: [{ _id: args._id }, { estado: args.estado }]
+// },
