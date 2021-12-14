@@ -26,7 +26,7 @@ const tiposProyecto = gql`
         # lid, est, y adm pueden ver los proyectos
         Proyectos: [Proyecto]
         Proyecto(_id: String!): Proyecto
-        listarProyectosByLider(lider: String estado: Enum_EstadoProyecto): [Proyecto]
+        listarProyectosByLider(_id: String): [Proyecto]
     }
     
     type Mutation {
@@ -57,9 +57,21 @@ const tiposProyecto = gql`
             fechaFin: Date
         ): Proyecto
         #Admin actualiza el estado del proyecto
-        cambiarEstadoProyecto(_id: String!, estado: Enum_EstadoProyecto!): Proyecto
-        #Admin actualiza la fase del proyecto
-        cambiarFaseProyecto(_id: String!, fase: Enum_FaseProyecto!): Proyecto
+        desactivarProyecto(
+            _id: String!
+            estado: Enum_EstadoProyecto
+            fase: Enum_FaseProyecto
+            fechaInicio: Date
+            fechaFin: Date
+        ): Proyecto
+        #Admin termina un proyecto
+        terminarProyecto(
+            _id: String!
+            estado: Enum_EstadoProyecto
+            fase: Enum_FaseProyecto
+            fechaInicio: Date
+            fechaFin: Date
+        ): Proyecto 
         #DELETE
         eliminarProyecto(_id: String!): Proyecto
     }

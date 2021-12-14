@@ -12,8 +12,8 @@ const resolversProyecto = {
       return Proyecto;
     },
     listarProyectosByLider: async (parent, args) => {
-      const proyectos = await ProyectoModel.find({ $and: [{lider: args.lider}, {estado: args.estado}]})
-      // const proyectos = await ProyectoModel.find({ lider: args.lider })
+      // const proyectos = await ProyectoModel.find({ lider: args.lider}, {estado: args.estado}]})
+      const proyectos = await ProyectoModel.find({ lider: args._id })
       return proyectos;
     }
   },
@@ -51,26 +51,22 @@ const resolversProyecto = {
       return proyectoAprobado
       },
 
-    cambiarEstadoProyecto: async (parent, args) => {
-      const estadoProyecto = await ProyectoModel.findByIdAndUpdate(
-        args._id,
-        {
-          estado: args.estado,
-        },
-        { new: true }
-      )
-      return estadoProyecto
+    desactivarProyecto: async (parent, args) => {
+      const proyectoDesactivado = await ProyectoModel.findByIdAndUpdate(args._id, {
+        estado: args.estado,
+        fase: "INICIADO",
+        fechaInicio: Date.now()
+      }, { new: true })
+      return proyectoDesactivado
     },
 
-    cambiarFaseProyecto: async (parent, args) => {
-      const estadoProyecto = await ProyectoModel.findByIdAndUpdate(
-        args._id,
-        {
-          fase: args.fase,
-        },
-        { new: true }
-      )
-      return estadoProyecto
+    terminarProyecto: async (parent, args) => {
+      const proyectoTerminado = await ProyectoModel.findByIdAndUpdate(args._id, {
+        estado: args.estado,
+        fase: "INICIADO",
+        fechaInicio: Date.now()
+      }, { new: true })
+      return proyectoTerminado
     },
 
     eliminarProyecto: async (parent, args) => {
