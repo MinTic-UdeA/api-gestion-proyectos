@@ -44,29 +44,36 @@ const resolversProyecto = {
 
     aprobarProyecto: async (parent, args) => {
         const proyectoAprobado = await ProyectoModel.findByIdAndUpdate(args._id, {
-        estado: args.estado,
+        estado: "ACTIVO",
         fase: "INICIADO",
-        fechaInicio: Date.now()
+        fechaInicio: new Date(Date.now()).toISOString().split("T")[0]
       }, { new: true })
       return proyectoAprobado
       },
 
     desactivarProyecto: async (parent, args) => {
       const proyectoDesactivado = await ProyectoModel.findByIdAndUpdate(args._id, {
-        estado: args.estado,
-        fase: "INICIADO",
-        fechaInicio: Date.now()
+        estado: "INACTIVO",
+        fechaFin: new Date(Date.now()).toISOString().split("T")[0]
       }, { new: true })
       return proyectoDesactivado
     },
 
     terminarProyecto: async (parent, args) => {
       const proyectoTerminado = await ProyectoModel.findByIdAndUpdate(args._id, {
-        estado: args.estado,
-        fase: "INICIADO",
-        fechaInicio: Date.now()
+        estado: "INACTIVO",
+        fase: "TERMINADO",
+        fechaFin: new Date(Date.now()).toISOString().split("T")[0]
       }, { new: true })
       return proyectoTerminado
+    },
+
+    reactivarProyecto: async (parent, args) => {
+      const proyectoReactivado = await ProyectoModel.findByIdAndUpdate(args._id, {
+        estado: "ACTIVO",
+        fechaInicio: new Date(Date.now()).toISOString().split("T")[0]
+      }, { new: true })
+      return proyectoReactivado
     },
 
     eliminarProyecto: async (parent, args) => {
