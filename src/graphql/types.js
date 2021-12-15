@@ -8,9 +8,7 @@ import { tiposEnums } from "../models/enums/types.js"
 import { tiposAutenticacion } from "./auth/types.js"
 
 const tiposGlobales = gql`
-
     scalar Date
-
 `
 
 export const tipos = [ tiposGlobales, tiposUsuario, tiposProyecto, tiposAvance, tiposInscripcion, tiposEnums, tiposAutenticacion ]

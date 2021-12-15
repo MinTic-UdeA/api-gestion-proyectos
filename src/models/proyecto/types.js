@@ -51,20 +51,28 @@ const tiposProyecto = gql`
         # admin aprueba los proyectos creados actualizando su estado
         aprobarProyecto(
             _id: String!
+            estado: Enum_EstadoProyecto
+            fase: Enum_FaseProyecto
+            fechaInicio: String
         ): Proyecto
         #Admin actualiza el estado del proyecto
         desactivarProyecto(
             _id: String!
-            # estado: Enum_EstadoProyecto
-            # fechaFin: Date
+            estado: Enum_EstadoProyecto
+            fechaFin: String
         ): Proyecto
         #Admin termina un proyecto
         terminarProyecto(
             _id: String!
+            estado: Enum_EstadoProyecto
+            fase: Enum_FaseProyecto
+            fechaFin: String
         ): Proyecto 
         #Admin reactiva un proyecto
         reactivarProyecto(
             _id: String!
+            estado: Enum_EstadoProyecto
+            fechaInicio: String
         ): Proyecto 
         #DELETE
         eliminarProyecto(_id: String!): Proyecto

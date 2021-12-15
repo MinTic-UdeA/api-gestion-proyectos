@@ -30,7 +30,7 @@ const resolversProyecto = {
       return proyectoCreado
     },
     editarProyecto: async (parent, args) => {
-      const proyectoEditado = await ProyectoModel.findByIdAndUpdate( args._id,
+      const proyectoEditado = await ProyectoModel.findByIdAndUpdate(args._id,
         {
           nombre: args.nombre,
           objGeneral: args.objGeneral,
@@ -43,27 +43,33 @@ const resolversProyecto = {
     },
 
     aprobarProyecto: async (parent, args) => {
-        const proyectoAprobado = await ProyectoModel.findByIdAndUpdate(args._id, {
+     
+      const proyectoAprobado = await ProyectoModel.findByIdAndUpdate(args._id, {
         estado: "ACTIVO",
         fase: "INICIADO",
-        fechaInicio: new Date(Date.now()).toISOString().split("T")[0]
-      }, { new: true })
-      return proyectoAprobado
+        fechaInicio: new Date().toISOString().split("T")[0]
       },
+        { new: true })
+      return proyectoAprobado
+    },
 
     desactivarProyecto: async (parent, args) => {
+
       const proyectoDesactivado = await ProyectoModel.findByIdAndUpdate(args._id, {
         estado: "INACTIVO",
-        fechaFin: new Date(Date.now()).toISOString().split("T")[0]
+        fechaFin: new Date().toISOString().split("T")[0]
       }, { new: true })
       return proyectoDesactivado
     },
 
+    //.split("T")[0]
+
     terminarProyecto: async (parent, args) => {
+    
       const proyectoTerminado = await ProyectoModel.findByIdAndUpdate(args._id, {
         estado: "INACTIVO",
         fase: "TERMINADO",
-        fechaFin: new Date(Date.now()).toISOString().split("T")[0]
+        fechaFin: new Date().toISOString().split("T")[0]
       }, { new: true })
       return proyectoTerminado
     },
@@ -71,8 +77,8 @@ const resolversProyecto = {
     reactivarProyecto: async (parent, args) => {
       const proyectoReactivado = await ProyectoModel.findByIdAndUpdate(args._id, {
         estado: "ACTIVO",
-        fechaInicio: new Date(Date.now()).toISOString().split("T")[0]
-      }, { new: true })
+        fechaInicio: new Date().toISOString().split("T")[0]
+      }, { new: true })    
       return proyectoReactivado
     },
 
