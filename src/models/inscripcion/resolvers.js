@@ -24,7 +24,7 @@ const resolversInscripcion = {
         aprobarInscripcion: async (parent, args) => {
             const inscripcionAprobada = await InscripcionModel.findOneAndUpdate(args.id, {
                 estado: "ACEPTADA",
-                fechaIngreso: Date.now()
+                fechaIngreso: new Date().toISOString().split("T")[0]
             }, { new: true })
             return inscripcionAprobada
         }

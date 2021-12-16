@@ -26,7 +26,12 @@ const tiposInscripcion = gql`
             fechaIngreso: String
             fechaEgreso: String
         ): Inscripcion
-        aprobarInscripcion(_id: String!): Inscripcion
+        aprobarInscripcion(
+            _id: String!
+            estado: Enum_EstadoInscripcion
+            fechaInicio: String
+            ): Inscripcion
     }
+    
 `
 export { tiposInscripcion };
