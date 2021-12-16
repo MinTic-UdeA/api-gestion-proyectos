@@ -22,14 +22,22 @@ const resolversInscripcion = {
             return inscripcionCreada
         },
         aprobarInscripcion: async (parent, args) => {
-            const inscripcionAprobada = await InscripcionModel.findOneAndUpdate(args.id, {
+            const inscripcionAprobada = await InscripcionModel.findByIdAndUpdate(args._id, {
                 estado: "ACEPTADA",
                 fechaIngreso: new Date().toISOString().split("T")[0]
             }, { new: true })
             return inscripcionAprobada
+        },
+        rechazarInscripcion: async (parent, args) => {
+            const inscripcionRechazada = await InscripcionModel.findByIdAndUpdate(args._id, {
+                estado: "PENDIENTE"
+            }, { new: true })
+            return inscripcionRechazada
         }
-    }
 
+    }
 }
 
 export { resolversInscripcion };
+
+/* new Date().toISOString().split("T")[0] */

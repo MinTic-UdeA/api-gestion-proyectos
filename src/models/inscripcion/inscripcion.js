@@ -31,12 +31,10 @@ const inscripcionSchema = new Schema({
     proyecto: {
         type: Schema.Types.ObjectId,
         ref: ProyectoModel,
-        required: true,
     },
     estudiante: {
         type: Schema.Types.ObjectId,
-        ref: UsuarioModel,
-        required: true,
+        ref: UsuarioModel
     },
 });
 

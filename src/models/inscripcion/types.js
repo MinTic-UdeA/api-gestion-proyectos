@@ -2,7 +2,7 @@
 2. Definimos la variable tiposNombre
 3. En el template de gql definimos siempre los tipos, luego el query, y el mutation.
 4. Recordar que en los tipos no puede faltar el ID. 
-*/ 
+*/
 import { gql } from "apollo-server-express";
 
 const tiposInscripcion = gql`
@@ -28,8 +28,9 @@ const tiposInscripcion = gql`
         ): Inscripcion
         aprobarInscripcion(
             _id: String!
-            estado: Enum_EstadoInscripcion
-            fechaInicio: String
+            ): Inscripcion
+        rechazarInscripcion(
+            _id: String!
             ): Inscripcion
     }
     
