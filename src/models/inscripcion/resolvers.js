@@ -7,7 +7,6 @@ const resolversInscripcion = {
             const inscripciones = await InscripcionModel.find({ lider: args.lider })
                 .populate("proyecto")
                 .populate("estudiante")
-            console.log(inscripciones);
             return inscripciones
         }
     },
@@ -15,7 +14,10 @@ const resolversInscripcion = {
         crearInscripcion: async (parent, args) => {
             const inscripcionCreada = await InscripcionModel.create({
                 proyecto: args.proyecto,
-                estudiante: args.estudiante
+                estudiante: args.estudiante,
+                estado: args.estado,
+                fechaIngreso: args.fechaIngreso,
+                fechaEgreso: args.fechaEgreso
             })
             return inscripcionCreada
         },
