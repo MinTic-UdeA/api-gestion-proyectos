@@ -26,7 +26,8 @@ const tiposProyecto = gql`
         # lid, est, y adm pueden ver los proyectos
         Proyectos: [Proyecto]
         Proyecto(_id: String!): Proyecto
-        listarProyectosByLider(_id: String): [Proyecto]
+        # listarProyectosByLider(_id: String): [Proyecto]
+        listarProyectosByLider(lider: String, estado:Enum_EstadoProyecto): [Proyecto]
     }
     
     type Mutation {

@@ -4,9 +4,14 @@ import { UsuarioModel } from "../usuario/usuario.js";
 const resolversInscripcion = {
     Query: {
         listarInscripciones: async (parent, args) => {
-            const inscripciones = await InscripcionModel.find({ lider: args.lider })
-                .populate("proyecto")
-                .populate("estudiante")
+            const fecha = new Date(); 
+            console.log("ultima query");
+            console.log(fecha.toLocaleTimeString());
+            console.log(args.lider);
+            //{ proyecto: args.lider }
+            const inscripciones = await InscripcionModel.find({ lider: args.lider})
+                .populate("lider")
+                //.populate("inscritos")
             console.log(inscripciones);
             return inscripciones
         }
