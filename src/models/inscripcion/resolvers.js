@@ -4,21 +4,9 @@ import { UsuarioModel } from "../usuario/usuario.js";
 const resolversInscripcion = {
     Query: {
         listarInscripciones: async (parent, args) => {
-<<<<<<< HEAD
-            const fecha = new Date(); 
-            console.log("ultima query");
-            console.log(fecha.toLocaleTimeString());
-            console.log(args.lider);
-            //{ proyecto: args.lider }
-            const inscripciones = await InscripcionModel.find({ lider: args.lider})
-                .populate("lider")
-                //.populate("inscritos")
-            console.log(inscripciones);
-=======
             const inscripciones = await InscripcionModel.find({ lider: args.lider })
                 .populate("proyecto")
                 .populate("estudiante")
->>>>>>> 2c7106b956f698890339954cc3989dbf5e894bb8
             return inscripciones
         }
     },

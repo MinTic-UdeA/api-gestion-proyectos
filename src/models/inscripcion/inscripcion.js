@@ -34,7 +34,6 @@ const inscripcionSchema = new Schema({
     },
     estudiante: {
         type: Schema.Types.ObjectId,
-<<<<<<< HEAD
         ref: UsuarioModel,
         required: true,
     }
@@ -57,11 +56,6 @@ inscripcionSchema.virtual('lider', {
     foreignField: '._id',
 })*/
 
-=======
-        ref: UsuarioModel
-    },
-});
->>>>>>> 2c7106b956f698890339954cc3989dbf5e894bb8
 
 const InscripcionModel = model('Inscripciones', inscripcionSchema);
 
