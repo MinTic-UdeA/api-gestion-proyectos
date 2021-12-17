@@ -1,13 +1,29 @@
+import mongoose from 'mongoose';
 import { InscripcionModel } from "./inscripcion.js";
+import { ProyectoModel } from "../proyecto/proyecto.js";
 import { UsuarioModel } from "../usuario/usuario.js";
 
 const resolversInscripcion = {
     Query: {
-        listarInscripciones: async (parent, args) => {
-            const inscripciones = await InscripcionModel.find({ lider: args.lider })
-                .populate("proyecto")
-                .populate("estudiante")
-            return inscripciones
+        listarInscripciones: async (parent, args, context) => {
+            let lista = [];
+            let listaInscripciones = [];
+            console.log(args.lider);
+
+            if (context.userData) {
+                const proyectos = await ProyectoModel.find({ lider:  args.lider});
+
+                const listaIdProyectos = proyectos.map((p) => p._id.toString());
+
+                for (let i = 0; i < listaIdProyectos.length; i++) {
+                    const inscripcion = await InscripcionModel.find({ proyecto: listaIdProyectos[i] })
+                                                                .populate("proyecto")
+                                                                .populate("estudiante");
+
+                    inscripcion.forEach((ins) => listaInscripciones.push(ins));
+                }
+            }
+            return listaInscripciones
         }
     },
     Mutation: {

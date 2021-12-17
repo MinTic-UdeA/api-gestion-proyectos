@@ -19,10 +19,10 @@ const resolversProyecto = {
       return Proyecto;
     },
     listarProyectosByLider: async (parent, args) => {
-      //console.log("Informacaion Lider")
-      //console.log(args.lider)
+      console.log(args.lider)
+      console.log(args.estado)
       const proyectos = await ProyectoModel.find({ lider: args.lider, estado: args.estado})
-      //const proyectos = await ProyectoModel.find({ lider: args._id })
+      //const proyectos = await ProyectoModel.find({ lider: args.lider })
       console.log(proyectos)
       return proyectos;
     }

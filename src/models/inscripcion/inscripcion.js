@@ -44,7 +44,7 @@ const inscripcionSchema = new Schema({
     }
 );
 
-inscripcionSchema.virtual('lider', {
+inscripcionSchema.virtual('liderProyectos', {
     ref: 'Proyecto',
     localField: 'proyecto',
     foreignField: 'lider',
