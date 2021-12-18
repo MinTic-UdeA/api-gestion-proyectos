@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { InscripcionModel } from "./inscripcion.js";
 import { ProyectoModel } from "../proyecto/proyecto.js";
 import { UsuarioModel } from "../usuario/usuario.js";
