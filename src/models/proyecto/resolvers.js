@@ -1,6 +1,5 @@
 import { ProyectoModel } from "./proyecto.js";
 
-
 const resolversProyecto = {
 
   Query: {
@@ -11,15 +10,23 @@ const resolversProyecto = {
       } else if (context.userData.rol === "ESTUDIANTE") {
         const proyectosActivos = await ProyectoModel.find({ estado: "ACTIVO" }).populate("lider")
         return proyectosActivos;
-      }
+      } else if (context.userData.rol === 'LIDER'){
+        const proyectos = await ProyectoModel.find({lider: context.userData._id}).populate('lider').populate('avances').populate({ 
+          path: 'inscripciones',
+          populate: {
+            path: 'estudiante'
+          } 
+       });
+        return proyectos; }
     },
     Proyecto: async (parent, args) => {
       const Proyecto = await ProyectoModel.findById({ _id: args._id })
       return Proyecto;
     },
     listarProyectosByLider: async (parent, args) => {
-      // const proyectos = await ProyectoModel.find({ lider: args.lider}, {estado: args.estado}]})
-      const proyectos = await ProyectoModel.find({ lider: args._id })
+      const proyectos = await ProyectoModel.find({ lider: args.lider, estado: args.estado})
+      //const proyectos = await ProyectoModel.find({ lider: args.lider })
+      console.log(proyectos)
       return proyectos;
     }
   },
@@ -51,11 +58,13 @@ const resolversProyecto = {
     aprobarProyecto: async (parent, args) => {
      
       const proyectoAprobado = await ProyectoModel.findByIdAndUpdate(args._id, {
+        fechaInicio: new Date().toISOString().split("T")[0],
         estado: "ACTIVO",
-        fase: "INICIADO",
-        fechaInicio: new Date().toISOString().split("T")[0]
+        fase: "INICIADO"
       },
         { new: true })
+        console.log("RESULTADO PROYECTO")
+        console.log(proyectoAprobado)
       return proyectoAprobado
     },
 
@@ -99,4 +108,4 @@ export { resolversProyecto };
 
 // {
 //   $and: [{ _id: args._id }, { estado: args.estado }]
-// },
+// }

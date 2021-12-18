@@ -1,25 +1,30 @@
+import mongoose from 'mongoose';
 import { InscripcionModel } from "./inscripcion.js";
 import { ProyectoModel } from "../proyecto/proyecto.js";
 import { UsuarioModel } from "../usuario/usuario.js";
 
+
 const resolversInscripcion = {
     Query: {
         listarInscripciones: async (parent, args, context) => {
-            if (context.userData.rol === "LIDER") {
-                const proyectos = await ProyectoModel.find({ lider: context.userData._id });
-                console.log(proyectos)
-                if (proyectos) {
-                    const inscripciones = await InscripcionModel.find({ proyecto: proyectos.map(p => p._id.toLocaleString()) }).populate('estudiante').populate({
-                        path: 'proyecto',
-                        populate: {
-                            path: 'lider'
-                        }
-                    });
-                    return inscripciones;
-                } else {
-                    console.log('No hay inscripciones para el usuario')
+           
+            let listaInscripciones = [];
+            console.log(args.lider);
+
+            if (context.userData) {
+                const proyectos = await ProyectoModel.find({ lider:  args.lider});
+
+                const listaIdProyectos = proyectos.map((p) => p._id.toString());
+
+                for (let i = 0; i < listaIdProyectos.length; i++) {
+                    const inscripcion = await InscripcionModel.find({ proyecto: listaIdProyectos[i] })
+                                                                .populate("proyecto")
+                                                                .populate("estudiante");
+
+                    inscripcion.forEach((ins) => listaInscripciones.push(ins));
                 }
             }
+            return listaInscripciones
         }
     },
     Mutation: {
@@ -53,3 +58,19 @@ const resolversInscripcion = {
 export { resolversInscripcion };
 
 /* new Date().toISOString().split("T")[0] */
+
+/* if (context.userData.rol === "LIDER") {
+    const proyectos = await ProyectoModel.find({ lider: context.userData._id });
+    console.log(proyectos)
+    if (proyectos) {
+        const inscripciones = await InscripcionModel.find({ proyecto: proyectos.map(p => p._id.toLocaleString()) }).populate('estudiante').populate({
+            path: 'proyecto',
+            populate: {
+                path: 'lider'
+            }
+        });
+        return inscripciones;
+    } else {
+        console.log('No hay inscripciones para el usuario')
+    }
+} */
