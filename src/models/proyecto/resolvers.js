@@ -9,7 +9,10 @@ const resolversProyecto = {
          const proyectos = await ProyectoModel.find().populate("lider").populate("avances")
       return proyectos;
       } else if (context.userData.rol === "ESTUDIANTE") {
-        const proyectosActivos = await ProyectoModel.find({ estado: "ACTIVO" }).populate("lider").populate("avances")
+        const proyectosActivos = await ProyectoModel.find({ estado: "ACTIVO" })
+                                                    .populate("lider")
+                                                    .populate("inscripciones")
+                                                    .populate("avances");
         return proyectosActivos;
       }
 

@@ -6,23 +6,29 @@ import { UsuarioModel } from "../usuario/usuario.js";
 const resolversInscripcion = {
     Query: {
         listarInscripciones: async (parent, args, context) => {
-            let lista = [];
             let listaInscripciones = [];
-            console.log(args.lider);
 
             if (context.userData) {
-                const proyectos = await ProyectoModel.find({ lider:  args.lider});
+                if (context.userData.rol === 'LIDER') {
+                    const proyectos = await ProyectoModel.find({ lider: args.lider });
 
-                const listaIdProyectos = proyectos.map((p) => p._id.toString());
+                    const listaIdProyectos = proyectos.map((p) => p._id.toString());
 
-                for (let i = 0; i < listaIdProyectos.length; i++) {
-                    const inscripcion = await InscripcionModel.find({ proyecto: listaIdProyectos[i] })
-                                                                .populate("proyecto")
-                                                                .populate("estudiante");
+                    for (let i = 0; i < listaIdProyectos.length; i++) {
+                        const inscripcion = await InscripcionModel.find({ proyecto: listaIdProyectos[i] })
+                                                                    .populate("proyecto")
+                                                                    .populate("estudiante");
 
-                    inscripcion.forEach((ins) => listaInscripciones.push(ins));
+                        inscripcion.forEach((ins) => listaInscripciones.push(ins));
+                    }
+                }
+
+                if (context.userData.rol === 'ESTUDIANTE') {
+                    listaInscripciones = await InscripcionModel.find({ estudiante: args.estudiante })
+                                                                    .populate("proyecto");
                 }
             }
+            
             return listaInscripciones
         }
     },

@@ -54,13 +54,13 @@ const proyectoSchema = new Schema({
 // populate para habilitar populate y campos virtuales 
 
 proyectoSchema.virtual('inscripciones', {
-    ref: 'Inscripcion',
+    ref: 'Inscripciones',
     localField: '_id',
     foreignField: 'proyecto',
   })
 
 proyectoSchema.virtual("avances", {
-    ref: "Avance",
+    ref: "Avances",
     localField: "_id",
     foreignField: "proyecto"
 })
