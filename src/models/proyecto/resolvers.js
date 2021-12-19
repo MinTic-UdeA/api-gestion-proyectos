@@ -1,6 +1,5 @@
 import { ProyectoModel } from "./proyecto.js";
 
-
 const resolversProyecto = {
 
   Query: {
@@ -9,25 +8,17 @@ const resolversProyecto = {
          const proyectos = await ProyectoModel.find().populate("lider").populate("avances")
       return proyectos;
       } else if (context.userData.rol === "ESTUDIANTE") {
-        const proyectosActivos = await ProyectoModel.find({ estado: "ACTIVO" })
-                                                    .populate("lider")
-                                                    .populate("inscripciones")
-                                                    .populate("avances");
+        const proyectosActivos = await ProyectoModel.find({ estado: "ACTIVO" }).populate("lider")
         return proyectosActivos;
-      }
-
-    },
+      } else if (context.userData.rol === 'LIDER'){
+        const proyectos = await ProyectoModel.find({lider: context.userData._id}).populate('lider').populate('avances')
+        return proyectos;
+       };
+        
+      },
     Proyecto: async (parent, args) => {
       const Proyecto = await ProyectoModel.findById({ _id: args._id })
       return Proyecto;
-    },
-    listarProyectosByLider: async (parent, args) => {
-      console.log(args.lider)
-      console.log(args.estado)
-      const proyectos = await ProyectoModel.find({ lider: args.lider, estado: args.estado})
-      //const proyectos = await ProyectoModel.find({ lider: args.lider })
-      console.log(proyectos)
-      return proyectos;
     }
   },
 

@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
 import { InscripcionModel } from "./inscripcion.js";
 import { ProyectoModel } from "../proyecto/proyecto.js";
 import { UsuarioModel } from "../usuario/usuario.js";
+
 
 const resolversInscripcion = {
     Query: {
@@ -52,7 +52,7 @@ const resolversInscripcion = {
         },
         rechazarInscripcion: async (parent, args) => {
             const inscripcionRechazada = await InscripcionModel.findByIdAndUpdate(args._id, {
-                estado: "PENDIENTE"
+                estado: "RECHAZADA"
             }, { new: true })
             return inscripcionRechazada
         }
@@ -63,3 +63,19 @@ const resolversInscripcion = {
 export { resolversInscripcion };
 
 /* new Date().toISOString().split("T")[0] */
+
+/* if (context.userData.rol === "LIDER") {
+    const proyectos = await ProyectoModel.find({ lider: context.userData._id });
+    console.log(proyectos)
+    if (proyectos) {
+        const inscripciones = await InscripcionModel.find({ proyecto: proyectos.map(p => p._id.toLocaleString()) }).populate('estudiante').populate({
+            path: 'proyecto',
+            populate: {
+                path: 'lider'
+            }
+        });
+        return inscripciones;
+    } else {
+        console.log('No hay inscripciones para el usuario')
+    }
+} */

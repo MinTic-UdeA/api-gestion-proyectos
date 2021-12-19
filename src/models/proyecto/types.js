@@ -27,7 +27,7 @@ const tiposProyecto = gql`
         Proyectos: [Proyecto]
         Proyecto(_id: String!): Proyecto
         # listarProyectosByLider(_id: String): [Proyecto]
-        listarProyectosByLider(lider: String, estado:Enum_EstadoProyecto): [Proyecto]
+        # listarProyectosByLider(lider: String!, estado:Enum_EstadoProyecto): [Proyecto]
     }
     
     type Mutation {
