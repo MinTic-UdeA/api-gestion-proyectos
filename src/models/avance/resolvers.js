@@ -37,20 +37,27 @@ const resolversAvance = {
   Mutation: {
     crearAvance: async (parents, args) => {
       const avanceCreado = await AvanceModel.create({
-      fecha: new Date().toISOString().split("T")[0],
-      descripcion: args.descripcion,
-      proyecto: args.proyecto,
-      creadoPor: args.creadoPor,
-    });
-return avanceCreado;
+        fecha: new Date().toISOString().split("T")[0],
+        descripcion: args.descripcion,
+        proyecto: args.proyecto,
+        creadoPor: args.creadoPor,
+      });
+      return avanceCreado;
     },
 
-editarAvance: async (parents, args) => {
-  const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id, {
-    descripcion: args.descripcion
-  }, { new: true });
-  return avanceEditado;
-},
+    editarAvance: async (parents, args) => {
+      const avanceEditado = await AvanceModel.findByIdAndUpdate(args._id, {
+        descripcion: args.descripcion
+      }, { new: true });
+      return avanceEditado;
+    },
+
+    crearObservacion: async (parent, args) => {
+      const observacionCreada = await AvanceModel.findByIdAndUpdate(args._id,
+        {$push: { observaciones: args.observacion}
+        }, {new:true});
+        return observacionCreada;
+    }
   },
 }
 

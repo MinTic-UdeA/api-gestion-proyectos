@@ -11,10 +11,9 @@ const resolversProyecto = {
         const proyectosActivos = await ProyectoModel.find({ estado: "ACTIVO" }).populate("lider")
         return proyectosActivos;
       } else if (context.userData.rol === 'LIDER'){
-        const proyectos = await ProyectoModel.find({lider: context.userData._id}).populate('lider').populate('avances')
+        const proyectos = await ProyectoModel.find({ $and: [{ lider: context.userData._id }, { estado: "ACTIVO" }]}).populate('lider').populate('avances')
         return proyectos;
        };
-        
       },
     Proyecto: async (parent, args) => {
       const Proyecto = await ProyectoModel.findById({ _id: args._id })
